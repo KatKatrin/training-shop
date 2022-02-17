@@ -10,7 +10,6 @@
   &__item{
     display: flex;
     align-items: center;
-   
   }
 }
 
@@ -21,24 +20,54 @@
   justify-content: space-around;
   margin: 32px 85px;
 
-  &__container{
-
-    & .information{
-      
-      > .information__block{
-
-        > div{
-          margin-bottom: 32px;
-        }
-       
-      }
-    }
+  @media screen and (max-width:1280px) {
+    flex-direction: column;
+    align-items: center;
     
-
-    > .add-card{
-      display: flex;
+      .card-content__container.small{
+      display: none;
     }
   }
   
+
+    &__container.information{
+      
+      > .information__cloth {
+        margin-bottom: 32px;
+        border-bottom: 2px solid #E6E6E6;
+
+        > .info {
+          padding-top: 16px;
+        }
+      }
+
+      > .information__price {
+        display: flex;
+        align-items: center;
+        padding-bottom: 32px;
+        border-bottom: 2px solid #E6E6E6;
+
+        > .price{
+          font-weight: bold;
+          font-size: 22px;
+          line-height: 36px;
+          margin-right: 24px;
+        }
+      }
+
+      .information__guarantee{
+        margin-bottom: 23px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+    }
+}
+
+.card-content__container-second{
+  width: 448px;
+  height: 560px;
 }
 
