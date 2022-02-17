@@ -1,7 +1,7 @@
 import Rating from "../../rating/Rating";
 import './categoryBlock.scss';
 
-import {Link, NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 

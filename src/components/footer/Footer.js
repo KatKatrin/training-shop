@@ -1,4 +1,4 @@
-
+import { NavLink } from "react-router-dom";
 import "./footer.scss";
 
 import icons from "../header/img/Group 1.png";
@@ -28,11 +28,13 @@ function Footer (){
     <div className="footer__navigations">
 
       <div className="footer__navigation__block">
-        <h4> <a href="#">Categories</a> </h4>
-        <p> <a href="#">Men</a> </p>
-        <p> <a href="#">Women</a></p>
-        <p> <a href="#">Accessories</a></p>
-        <p> <a href="#">Beauty</a></p>
+        <h4> 
+          Categories 
+        </h4>
+        <p> <NavLink to='/men' className={'link-style'}> Men </NavLink> </p>
+        <p> <NavLink to='/women' className={'link-style'}> Women </NavLink></p>
+        <p> <span className="link-style">Accessories</span></p>
+        <p> <span className="link-style">Beauty</span></p>
       </div>
 
       <div className="footer__navigation__block">
