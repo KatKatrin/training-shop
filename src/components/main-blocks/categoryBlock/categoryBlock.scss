@@ -1,0 +1,145 @@
+@import '../../../variables.scss';
+
+//women
+
+.content__block {
+  width: $width;
+  max-width: 1110px;
+  padding: 52px 85px 106px 85px;
+  min-height: 955px;
+
+  @media screen and (max-width:1280px){
+    padding: 0px;
+    margin: auto;
+  }
+ 
+  &__header{
+    max-width: $maxwidth;
+    display: flex;
+    justify-content: space-between;
+    height: 24.53px;
+    align-items: center;
+    margin-bottom: 47px;
+
+    @media screen and (max-width:1280px){
+       flex-direction: column;
+    }
+
+    > .content__block__title {
+      display: inline-block;
+
+               
+      > h3{
+        line-height: 25px;
+        font-weight: 600;
+        font-size: 22px;
+        margin: 0px;
+      }
+    }
+
+    > .content__block__title-menu {
+      display: flex;
+      justify-content: space-between;
+      line-height: 13px;
+
+          
+      > span {
+        margin: 16px;
+        letter-spacing: 0.06em;
+        color: #1A1A1A;
+        opacity: 0.6;
+        font-style: normal;
+        font-weight: normal;
+
+        @media screen and (max-width:1280px){
+          margin-left: 0px;
+          margin-right: 10px;
+          letter-spacing: 0px;
+          font-size: 7px;
+        }
+      }
+
+      > span.active  {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 13px;
+        opacity: 1;
+      }
+    }
+  }
+
+    > .content-type.catalog {
+      max-width: 1110px;
+      width:$width;
+      margin: auto;
+    }
+
+    > section > .clothes__list {
+      box-sizing: border-box;
+      margin: 0;
+      padding-left: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 255px);
+      //grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+      grid-template-rows: repeat(auto-fill, 376.42px);
+      grid-gap: 30px;
+      justify-content: center;
+
+    
+      > .cloth__item {
+        list-style-type:none;
+        width: 255px;
+        height: 376.42px;
+
+        > .cloth__item-name {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          font-family: Spartan;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 16px;
+          color: #121212;
+          opacity: 0.6;
+        }
+
+        > .cloth__information {
+          display: flex;
+          justify-content: space-between;
+          line-height: 16px;
+
+          > .cloth__item-price {
+            font-weight: bold;
+            font-size: 14px;
+            color: #121212;
+          }
+
+        }
+      }
+    }
+
+   > .button__long {
+    margin-top: 47.8px;
+    position: absolute;
+    width: $width;
+    max-width: 1100px;
+    height: 47.8px;
+    background:#F8F8F8;
+    border: 2px solid #F8F8F8;
+    box-sizing: border-box;
+  }
+
+   
+}
+
+// mens
+
+.content__block.men{
+  padding-top: 0px;
+  padding-bottom: 0px;
+
+  @media screen and (max-width:1280px) {
+    padding-top: 110px;
+  }
+}

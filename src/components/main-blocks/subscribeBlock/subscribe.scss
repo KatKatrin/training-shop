@@ -1,0 +1,87 @@
+@import '../../../variables.scss';
+
+// form
+
+.subscribe-block{
+  width: $width;
+  max-width: $maxwidth;
+  height: 580px;
+  margin-left: auto;
+  background: url('./subscribeImg/subscribeForm.png');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width:900px) {
+    background: none;
+    height: 100%;
+    padding-top: 96px;
+  }
+  
+
+  > .main__form{
+    width:40%;
+    max-width: 400px;
+    height: 340px;
+    background-color: #FFFFFF;
+    text-align: center;
+
+    > .form_input {
+      width: 100%;
+      max-width: 340px;
+      height: 64px;
+      background: #F8F8F8;
+      border: none;
+      box-sizing: border-box;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    > .button_submit {
+      width: 100%;
+      max-width: 340px;
+      height: 64px;
+      background: #121212;
+      border: 2px solid #121212;
+      box-sizing: border-box;
+      font-family: Spartan;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 18px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      opacity: 0.9;
+    }
+
+    > h2 {
+      font-family: Spartan;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 36px;
+      align-items: center;
+      text-align: center;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #121212;
+    }
+
+    > p{
+      font-family: Spartan;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #121212;
+      opacity: 0.4;
+    }
+  }
+}
+
+// form

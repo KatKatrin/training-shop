@@ -1,0 +1,113 @@
+@import '../../variables.scss';
+
+// footer
+
+.footer {
+  width: $width;
+  max-width: $maxwidth;
+  
+  &__join-form{
+    height: 56px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #121212;
+    color: #FFFFFF;
+    letter-spacing: 0.06em;
+
+    @media screen  and(max-width:850px){
+     flex-direction: column;
+     height: 118px;
+    }
+
+    >.input__block {
+      
+      > #email {
+        width: 400px;
+        height: 32px;
+        opacity: 0.2;
+        margin-right: 12px;
+        border: none;
+      }
+
+      > .button_submit{
+        width: 108px;
+        height: 32px;
+        border: 1px solid white;
+        background-color: black;
+        color: #FFFFFF;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  &__navigations{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 237px;
+    background-color: #FFFFFF;
+
+    @media screen  and(max-width:850px){
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 200px);
+      grid-template-rows: repeat(auto-fill, 149px);
+      grid-gap: 30px;
+      height: 100%;
+      
+    }
+
+    > .footer__navigation__block{
+      width: 255px;
+      height: 149px;
+
+      > h4{
+        margin: 0;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #121212;
+
+        > a{
+          text-decoration: none;
+          color: #121212;
+        }
+      }
+
+      > p {
+        color: #121212;
+        opacity: 0.8;
+        line-height: 34px;
+        margin: 0;
+
+        > a {
+          text-decoration: none;
+          color: #121212;
+        }
+      }
+
+      > .contacts__content {
+        line-height: 34px;
+
+        > a {
+          text-decoration: none;
+          color: #121212;
+        }
+      }
+    }
+  }
+
+  &__informations{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #F8F8F8;
+    height: 40px;
+
+    @media screen  and(max-width:850px){
+      display: none;
+    }
+  }
+}
+
+//footer

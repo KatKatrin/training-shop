@@ -1,0 +1,44 @@
+// filter-string
+
+.filter-string {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1110px;
+  height: 32px;
+  margin: 32px 85px 0;
+
+  &__item{
+    display: flex;
+    align-items: center;
+   
+  }
+}
+
+// card
+
+.card-content{
+  display: flex;
+  justify-content: space-around;
+  margin: 32px 85px;
+
+  &__container{
+
+    & .information{
+      
+      > .information__block{
+
+        > div{
+          margin-bottom: 32px;
+        }
+       
+      }
+    }
+    
+
+    > .add-card{
+      display: flex;
+    }
+  }
+  
+}
+

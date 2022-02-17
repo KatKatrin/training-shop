@@ -1,0 +1,227 @@
+@import "../../variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap');
+
+
+.header{
+ // display: table-row; //
+
+  position: relative; 
+  width: $width; 
+  max-width: $maxwidth;
+}
+
+.top-bar {
+  position: relative;
+  min-height: 24px;
+  color: #FFFFFF;
+ 
+  
+
+  @media screen and (max-width:1340px){
+      height: 50px;
+  }
+  
+  .rectangle {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: #121212;
+  }
+
+  &__icons {
+    position: absolute;
+    //left: 86.64%;
+    right: 6.64%;
+    top: 20.83%;
+    bottom: 20.83%;
+    opacity: 0.8;
+  }
+
+  &__content {
+    opacity: 0.8;
+
+      .phoneImg {
+      position: absolute;
+      // left: 6.64%;
+      right: 92.27%;
+      top: 20.83%;
+      bottom: 20.83%;
+    } 
+
+    .phoneNumber {
+      position: absolute;
+      left: 8.36%;
+      right: 82.73%;
+      top: 25%;
+      bottom: 25%;
+      font-family: Spartan;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 12px;
+      color: #FFFFFF;
+      opacity: 0.8;
+      text-decoration: none;
+    }
+
+    .locationImg{
+      position: absolute;
+      // left: 19.53%;
+      right: 79.38%;
+      top: 20.83%;
+      bottom: 20.83%;
+    }
+
+    .address {
+      position: absolute;
+      left: 21.25%;
+      right: 67.89%;
+      top: 20.83%;
+      bottom: 25%;
+      font-family: Inter;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 11px;
+      line-height: 13px;
+      letter-spacing: 0.03em;
+    }
+
+    .timeImg{
+      position: absolute;
+      // left: 36.25%;
+      right: 62.66%;
+      top: 20.83%;
+      bottom: 20.83%;
+    }
+
+    .schedule {
+      position: absolute;
+      left: 37.97%;
+      right: 55.62%;
+      top: 25%;
+      bottom: 25%;
+      font-family: Spartan;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 12px;
+    }
+  }
+
+
+}
+
+.menu {
+  position: absolute;
+  width: $width;
+  max-width: $maxwidth;
+  height: 66px;
+  left: 0px;
+  top: 50px;
+
+  &__logo {
+    position: absolute;
+    left: 6.64%;
+    right: 81.64%;
+    top: 22.73%;
+    bottom: 28.79%;
+    
+    
+    &__text {
+      font-family: Playfair Display SC;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 32px;
+      color: #121212;
+      text-decoration-line: none;
+    }
+  }
+
+  &__block{
+    position: absolute;
+    left: 24.53%;
+    right: 29.77%;
+    top: 37.88%;
+    bottom: 37.88%;
+    
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      margin: 0px;
+      padding: 0%;
+
+      @media screen and (max-width:950px){
+        visibility: hidden;
+      }
+
+      & .menu-item {
+        font-family: Spartan;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16px;
+        color: #121212;
+        text-decoration-line: none;
+      }
+    }
+    
+      &__navigation .list{
+        display: inline-block;
+      }
+  }
+
+  &__icons{
+    position: absolute;
+    left: 80.23%;
+    right: 6.33%;
+    top: 25.76%;
+    bottom: 31.82%;
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width:950px){
+         left: inherit;
+    }
+     
+    img{
+      width: 24px;
+      height: 24px;
+    }
+
+    .elipse{
+      position: absolute;
+      left: 91%;
+      right: 6.33%;
+      bottom: 50%;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #121212;
+      border: 2px solid #FFFFFF;
+      color: #FFFFFF;
+      font-family: Spartan;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 9px;
+      line-height: 18px;
+      text-align: center;
+    }
+  }
+
+  &__rectangle__small{
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 96.97%;
+    bottom: 0%;
+    width: $width;
+    max-width: $maxwidth;
+    height: 2px;
+    background-color: #F8F8F8;
+
+  }
+}

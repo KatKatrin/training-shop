@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+//import './App.css';
+import {HashRouter as Router, Route, Routes} from "react-router-dom";
+import Header from "./components/header/Header";
+import WomenPage from "./pages/WomenPage";
+import MenPage from "./pages/MenPage";
+import CartPage from "./pages/CatrPage";
+import Footer from "./components/footer/Footer";
+import MainPage from "./pages/MainPage";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+  return (  
+    <Router>
+
+     <header className="header" data-test-id="header">
+      <Header></Header>
+    </header>
+
+        <main className="main-content">
+          <Routes>
+           
+            <Route  path='/' element={<MainPage/>}/>
+
+            <Route  path='/women' element={<WomenPage/>}/>
+
+            <Route  path='/men' element={<MenPage/>}/>
+
+            <Route  path='/women/page' element={<CartPage/>}/>
+
+
+
+           
+
+
+            
+               
+          </Routes>   
+      </main>
+
+      <Footer></Footer>
+  
+  </Router>
+  )
+
+
 }
 
 export default App;
+
+

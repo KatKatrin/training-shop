@@ -1,0 +1,111 @@
+@import '../../variables.scss';
+
+
+
+
+
+.main-content__block {
+  padding-left: 85px;
+  padding-right: 85px;
+  
+   
+ 
+  display: grid;
+  grid-gap: 30px; 
+  grid-template-columns: 540px 255px 255px;
+  // grid-template-columns: minmax(max-content, 2fr) minmax(255px, 1fr) minmax(255px, 1fr);
+  grid-template-rows: 200px 260px;
+  grid-template-areas: "banner women men"
+                      "banner  accessories accessories";
+  
+  .banner{
+    grid-area: banner;
+  }
+
+  .women{
+    grid-area: women;
+  }
+
+  .men {
+    grid-area: men;
+  }
+
+  .accessories{
+    grid-area: accessories;
+  }
+
+  @media screen and(max-width:1280px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    &__item { 
+      width: 100%;
+      max-width: 540px;
+
+      &.women, &.men {
+        max-width: 255px;
+      }
+      
+      >img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+       
+      }
+    }
+  }
+}
+
+
+.main-content__conditions{
+  height: 106px;
+  // position: absolute;
+  // left: 0%;
+  // right: 0%;
+  // top: 651px;
+  // bottom: -102.91%;
+  background: #FFFFFF;
+  color: #121212;
+  border-bottom: solid #F8F8F8; ;
+
+  display: flex; //
+  justify-content: space-between; //
+  align-items: center; //
+  
+
+   &__item {
+    display: flex;
+    width: 350px;
+    
+    > .text{
+      height: 39px;
+      
+      > h4{
+        margin: 0;
+      }
+    }
+    
+   > .picture{
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+    }
+
+    &.shipping{
+      // position: absolute;
+      margin-left: 85px;
+      opacity: 0.9;
+    }
+
+    &.support{
+      //position: absolute;
+      margin-right: 85px;
+    }
+  }
+
+  @media screen and (max-width:1280px) {
+    visibility: hidden;
+  }
+}

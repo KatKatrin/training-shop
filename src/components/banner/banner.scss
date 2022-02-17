@@ -1,0 +1,42 @@
+@import '../../variables.scss';
+
+.banner-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: $maxwidth;
+  height: 32px;
+  background-color:  #F8F8F8;
+
+  > .banner-information{
+    margin-left: 85px;
+
+    > span {
+      margin: 6px;
+    }
+  }
+
+  > .banner-share{
+    margin-right: 85px;
+
+    > span {
+      margin-left: 6px;
+    }
+  }
+}
+
+.banner-block-name {
+  display: flex;
+  justify-content: center;
+  height: 70px;
+  background-color:  #F8F8F8;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 36px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #121212;
+
+}
+
