@@ -28,6 +28,15 @@
     top: 0%;
     bottom: 0%;
     background: #121212;
+
+    @media screen and (max-width:350px){
+      .top-bar__content{
+        >img{
+          display: none;
+        }
+      }
+  }
+
   }
 
   &__icons {

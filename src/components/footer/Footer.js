@@ -14,7 +14,7 @@ function Footer (){
     <footer className="footer">
       
     <div className="footer__join-form">
-      <label for="email">BE IN TOUCH WITH US:</label>
+      <label htmlFor="email">BE IN TOUCH WITH US:</label>
       <div className="input__block">
         <input id="email" name="user_email" required type="email" placeholder="Enter your email"/>
         <input className="button_submit" type="submit" value={"Join Us"} />

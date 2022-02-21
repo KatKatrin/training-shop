@@ -7,9 +7,43 @@
   height: 32px;
   margin: 32px 85px 0;
 
+  @media screen and (max-width:430px) {
+    margin: 32px 5px 5px;
+  }
+
   &__item{
     display: flex;
     align-items: center;
+  }
+}
+
+// under banner
+
+.under-banner-info {
+  display: flex;
+  justify-content:space-between;
+  padding-left: 85px;
+  padding-right: 85px;
+  padding-bottom: 6px;
+  background: #F8F8F8;
+  align-items:flex-start;
+
+  @media screen and (max-width:600px) {
+    flex-direction: column;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .info-block{
+    display: flex;
+    
+    .stock-availability {
+      padding-left: 24px;
+    }
+
+    > div > span {
+      font-weight: bold;
+    }
   }
 }
 
@@ -17,21 +51,86 @@
 
 .card-content{
   display: flex;
+  width: 100%;
+  max-width: 1110px;
+  height: 100%;
   justify-content: space-around;
   margin: 32px 85px;
 
-  @media screen and (max-width:1280px) {
+  @media screen and (max-width:1250px) {
+    margin-left: 0;
     flex-direction: column;
     align-items: center;
     
-      .card-content__container.small{
+
+    &__container.small {
+      display: none;
+    }
+
+    &__container-second.big {
+      > .main-cloth-big        
+        > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__container.information {
+      width: 100%;
+      
+      > .information__price {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+    }
+
+    .information__guarantee,.information__paysystem{
       display: none;
     }
   }
-  
 
-    &__container.information{
-      
+ 
+  &__container.small {
+    width: 94px;
+    height: 560px;
+
+    .arrows__block{
+      display: flex;
+
+      .arrows__block-prev > .arrow-up{
+        transform: rotate(90deg);
+      }
+
+      .arrows__block-next > .arrow-down{
+        transform: rotate(270deg);
+      }
+    }
+  }
+
+    &__container-second.big{
+      position: relative;
+      max-height: 560px;
+
+      >.arrows__block {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 40%;
+        left: 3.5%;
+        right: 3.5%;
+
+        .arrows__block-next > .arrow-right {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &__container.information {
+     max-width: 522px;
+            
       > .information__cloth {
         margin-bottom: 32px;
         border-bottom: 2px solid #E6E6E6;
@@ -43,7 +142,6 @@
 
       > .information__price {
         display: flex;
-        align-items: center;
         padding-bottom: 32px;
         border-bottom: 2px solid #E6E6E6;
 
@@ -52,6 +150,7 @@
           font-size: 22px;
           line-height: 36px;
           margin-right: 24px;
+          padding-top: 10px;
         }
       }
 
@@ -63,11 +162,146 @@
         letter-spacing: 0.06em;
         text-transform: uppercase;
       }
+
+      .information__paysystem{
+        margin-bottom: 32px;
+      } 
     }
 }
 
-.card-content__container-second{
-  width: 448px;
-  height: 560px;
+
+
+
+// servise shiping return
+
+.information__servise{
+  display: flex;
+  justify-content: space-between;
+  margin: 37px 0 32px;
+
+  > .info{
+    display: flex;
+    justify-content: center;
+  }
 }
+
+
+
+
+
+// description
+
+.information__description-cloth {
+
+  > .descrirtion-header{
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-top: 2px solid #E6E6E6;
+    border-bottom: 2px solid #E6E6E6;
+  }
+
+  .additional-information{
+    padding: 32px 0;
+    border-bottom: 2px solid #E6E6E6;
+
+    &__cloth{
+
+      p{
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 22px;
+
+        span{
+          font-weight: normal;
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+}
+
+.information__review {
+  padding-bottom: 32px;
+  border-bottom: 2px solid #E6E6E6;
+
+
+  .rating__review {
+    display: flex;
+    justify-content: space-between;
+
+    .write__review {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+  }
+
+  .stars-rating{
+    display: flex;
+    
+    .quantity__review {
+      font-size: 11px;
+      opacity: 0.6;
+      padding-left: 8px;
+    }
+  }
+
+ .person-review {
+   display: flex;
+   flex-direction: column;
+
+   &__header{
+     display: flex;
+     justify-content: space-between;
+
+     > div {
+       display: flex;
+       align-items: center;
+
+       .person-review__time{
+         padding-right: 8px;
+         font-size: 11px;
+         opacity: 0.6;
+       }
+     }
+   }
+ }
+}
+
+
+.related-products{
+  font-size: 22px;
+  line-height: 25px;
+  letter-spacing: 0.06em;
+  padding-bottom: 40px;
+  
+
+  &__header {
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+
+    > .arrows__block{
+      display: flex;
+      align-items: center;
+      
+      .arrows__block-next{
+        
+        .arrow-right{
+          transform:  rotate(180deg);
+        }
+      }
+    }
+  }
+}
+
+
 

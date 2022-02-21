@@ -7,10 +7,8 @@ import {Link} from 'react-router-dom';
 
 function CategoryBlock ({category, items}) {
 
-  console.log(category)
-  console.log(items)
-
-  function renderItems (arr, rating) {
+  
+  function renderItems (arr) {
     const items = arr.map((item, i) => {
           
       return (
@@ -23,7 +21,7 @@ function CategoryBlock ({category, items}) {
                     <div className="cloth__item-name">{item.productType}</div>
                     <div className="cloth__information">
                       <div className="cloth__item-price">{`$ ${item.price}.00`}</div>
-                      {rating()}
+                     <Rating color={'lightgray'}/>
                     </div>
             </li>
         )
@@ -40,7 +38,7 @@ function CategoryBlock ({category, items}) {
 
   return (
           <>
-          {renderItems(items, Rating)}
+          {renderItems(items)}
           </>
   )
 }

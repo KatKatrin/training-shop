@@ -22,7 +22,7 @@ function Banner ({bannerName}) {
       <span>
         <img src={share} alt="share" />
       </span>
-      <span>Share</span>
+      <span className='share-text'>Share</span>
     </div>
 
     </div>

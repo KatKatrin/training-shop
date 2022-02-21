@@ -1,14 +1,14 @@
 import './rating.scss';
 
-function Rating () {
+function Rating ({color}) {
 
   return(
-    <div class="rating-area">
+    <div className="rating-area">
       <span>★</span>
       <span>★</span>
       <span>★</span>
       <span>★</span>
-      <span style={{color:'lightgray'}}>★</span>
+      <span style={{color: color}}>★</span>
     </div>
   )
 };

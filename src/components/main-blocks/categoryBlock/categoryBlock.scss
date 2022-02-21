@@ -6,14 +6,14 @@
   width: $width;
   max-width: 1110px;
   padding: 52px 85px 106px 85px;
-  min-height: 955px;
+  //min-height: 955px;
 
   @media screen and (max-width:1280px){
     padding: 0px;
     margin: auto;
   }
  
-  &__header{
+  &__header {
     max-width: $maxwidth;
     display: flex;
     justify-content: space-between;
@@ -69,13 +69,13 @@
     }
   }
 
-    > .content-type.catalog {
+  > .content-type.catalog {
       max-width: 1110px;
       width:$width;
       margin: auto;
-    }
+  }
 
-    > section > .clothes__list {
+  > section > .clothes__list {
       box-sizing: border-box;
       margin: 0;
       padding-left: 0;
@@ -117,9 +117,9 @@
 
         }
       }
-    }
+  }
 
-   > .button__long {
+  > .button__long {
     margin-top: 47.8px;
     position: absolute;
     width: $width;
@@ -129,15 +129,13 @@
     border: 2px solid #F8F8F8;
     box-sizing: border-box;
   }
-
-   
 }
 
 // mens
 
 .content__block.men{
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 
   @media screen and (max-width:1280px) {
     padding-top: 110px;

@@ -5,6 +5,7 @@
 .footer {
   width: $width;
   max-width: $maxwidth;
+  margin-top: 20px;
   
   &__join-form{
     height: 56px;
@@ -16,14 +17,31 @@
     letter-spacing: 0.06em;
 
     @media screen  and(max-width:850px){
-     flex-direction: column;
+    flex-direction: column;
      height: 118px;
+     
+
+     >.input__block {
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+
+      > .button_submit {
+        height: 20px;
+        margin: 5px;
+      }
+     }
     }
 
     >.input__block {
+      display: flex;
+      width: 90%;
+      max-width: 12px + 400px +108px;
       
       > #email {
-        width: 400px;
+        margin-left: 3px;
+        width: 90%;
+        max-width: 400px;
         height: 32px;
         opacity: 0.2;
         margin-right: 12px;
@@ -31,7 +49,9 @@
       }
 
       > .button_submit{
-        width: 108px;
+        margin-right: 3px;
+        width: 100%;
+        max-width: 108px;
         height: 32px;
         border: 1px solid white;
         background-color: black;

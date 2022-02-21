@@ -1,0 +1,29 @@
+const relatedItems = [
+  {
+    id: 1,
+    productType: "Women's tracksuit Q109",
+    price: 30.00,
+    
+  },
+  {
+    id: 2,
+    productType: "Women's tracksuit Q109",
+    price: 30.00,
+    
+  },
+  {
+    id: 3,
+    productType: "Women's tracksuit Q109",
+    price: 30.00,
+    
+  },
+  {
+    id: 4,
+    productType: "Women's tracksuit Q109",
+    price: 30.00,
+   
+  }
+  
+]
+
+export default relatedItems;
