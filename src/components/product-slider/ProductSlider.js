@@ -28,7 +28,11 @@ function ProductSlider () {
 
       
             direction={"vertical"}
-            navigation={true}
+
+            navigation={{
+              nextEl: ".slider-vertical__down", 
+              prevEl: ".slider-vertical__up",
+            }}
 
             onSwiper={setThumbsSwiper}
           
@@ -42,6 +46,9 @@ function ProductSlider () {
           
           <SwiperSlide>
           <img src={clothSmall} alt="cloth-small" />
+          </SwiperSlide>
+          <SwiperSlide>
+          <img src={clothSmall} alt="cloth-small" />  
           </SwiperSlide>
           <SwiperSlide>
           <img src={clothSmall} alt="cloth-small" />  
@@ -78,6 +85,9 @@ function ProductSlider () {
         <img src={clothBig} alt="main-clothes" className='main-cloth-big' />
         </SwiperSlide>
         <SwiperSlide>
+        <img src={clothBig} alt="main-clothes" className='main-cloth-big' />
+          </SwiperSlide>
+          <SwiperSlide>
         <img src={clothBig} alt="main-clothes" className='main-cloth-big' />
           </SwiperSlide>
     </Swiper>

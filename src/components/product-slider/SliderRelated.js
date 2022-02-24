@@ -11,6 +11,8 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 
+import "swiper/css/bundle";
+
 
 
 // import required modules
@@ -27,11 +29,11 @@ export default function SliderRelated() {
       <Swiper
 
         navigation={{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          nextEl: ".related-btn__arrow-right", 
+          prevEl: ".related-btn__arrow-left",
         }}
 
-        // navigation={true}
+        
         slidesPerView={4}
         grid={{
           rows: 1,
@@ -39,12 +41,12 @@ export default function SliderRelated() {
         spaceBetween={30}
 
         breakpoints={{
-          200:{slidesPerView:2},
-          300: {slidesPerView:3},
-          900: {slidesPerView:4}
+          280:{slidesPerView:1},
+          470: {slidesPerView:2},
+          850: {slidesPerView:3},
+          1100: {slidesPerView:4}
         }}
 
-              
         modules={[Grid, Navigation]}
         className="mySwiper"
       >
@@ -63,7 +65,7 @@ function RelatedGrid (category, items) {
     const itemsSwiper = items.map((item, i) => {
       return (
         <SwiperSlide>
-            <li className="cloth__item" key={i}>
+            <li className="cloth__item" key={i + 1}>
            
                <img src={require(`../main-blocks/${category}Block/${category}Img/${i+1}.jpg`)} alt={item.productType} className={`${category}__item-img `}/>
                           

@@ -49,13 +49,14 @@ function CartPage () {
 
           <ProductSlider data-test-id='product-slider'></ProductSlider>
 
-          <div className='slider arrows__block'>
-            <div className='arrows__block-prev'>
-              <img src={arrowUp} alt="arrow-up" className='arrow-up'/>
-            </div>
-            <div  className='arrows__block-next'>
-              <img src={arrowDown} alt="arrow-down" className='arrow-down' />
-            </div>
+          <div className='slider-vertical__block'>
+            <button>
+              <img src={arrowUp} alt="arrow-up" className='slider-vertical__up'/>
+            </button>
+              
+           <button>
+            <img src={arrowDown} alt="arrow-down" className='slider-vertical__down' />
+           </button>
           </div>
                
         </div>
@@ -198,13 +199,14 @@ function CartPage () {
         <div className='related-products__header'>
           <h3>RELATED PRODUCTS</h3>
 
-          <div className='slider arrows__block swiper-navigation'>
-            <div className='arrows__block-prev' id="swiperPrev" >
-              <img src={arrowLeft} alt="arrow-left" className='arrow-left'/>
-            </div>
-            <div  className='arrows__block-next' id="swiperNext">
+        <div className='related-btn'>
+           
+          <button className="related-btn__arrow-left">
+               <img src={arrowLeft} alt="arrow-left" className='arrow-left'/> 
+          </button>
+          <button className="related-btn__arrow-right">
               <img src={arrowRight} alt="arrow-right" className='arrow-right' />
-            </div>
+            </button>
           </div>
 
         </div>
