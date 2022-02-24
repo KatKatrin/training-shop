@@ -7,15 +7,43 @@ import car from "./img/car.png";
 import support from "./img/support.png"
 import returnImg from "./img/return.png"
 
+
+
+
+import SliderMainPage from '../slider/Slider';
+
+
+
 function MainBlock () {
 
   return(
     <>
     <div className="main-box main-content__block">
 
+
             <div className="main-content__block__item banner" >
-              <img src={banner} alt="banner" />
+
+              <div className='main-title-banner'>
+
+                <SliderMainPage data-test-id="main-slider"></SliderMainPage>
+
+                {/* <img src={banner} alt="banner" className='big-title-banner'/> */}
+
+                {/* <div className='slider arrows__block'>
+                  <div className='arrows__block-prev'>
+                    <img src={arrow} alt="arrow-left" className='arrow-left'/>
+                  </div>
+                  <div  className='arrows__block-next'>
+                    <img src={arrow} alt="arrow-right" className='arrow-right' />
+                  </div>
+                </div> */}
+
+              </div> 
+
+              
+
             </div>
+
             <div className="main-content__block__item women">
               <img src={women} alt="women" />
             </div>

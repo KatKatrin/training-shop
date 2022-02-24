@@ -6,9 +6,13 @@ import App from './App';
 
 
 
+
+
 ReactDOM.render(
   <React.StrictMode>
-     <App /> 
+    <div className='app' data-test-id="app">
+      <App /> 
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );

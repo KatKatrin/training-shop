@@ -3,8 +3,7 @@ import './banner.scss';
 import Banner from "../components/banner/Banner";
 import Rating from "../components/rating/Rating";
 
-import cloth from '../components/card-item/img/cloth.png';
-import clothBig from '../components/card-item/img/bigCloth.png';
+
 import sizes from '../components/card-item/img/sizes.png';
 import addCard from '../components/card-item/img/addCard.png';
 import paySystem from '../components/card-item/img/paySystem.png';
@@ -16,13 +15,17 @@ import returnImg from '../components/card-item/img/refresh.png';
 import envelope from '../components/card-item/img/mail.png';
 import message from '../components/card-item/img/message.png';
 
-import relatedItems from '../components/main-blocks/relatedBlock/relatedItems';
-import CategoryBlock from '../components/main-blocks/categoryBlock/CategoryBlock';
+import arrowLeft from '../constant/arrows/arrow.png';
+import arrowRight from '../constant/arrows/arrowRight.png';
+import arrowUp from '../constant/arrows/arrowUp.png';
+import arrowDown from '../constant/arrows/arrowDown.png';
+import ProductSlider from '../components/product-slider/ProductSlider';
+import SliderRelated from '../components/product-slider/SliderRelated';
 
-import arrow from '../constant/arrows/arrow.png';
 
 
 function CartPage () {
+
 
   return(
     <div className="main-content">
@@ -42,44 +45,22 @@ function CartPage () {
 
       <div className="card-content">
 
-        
+        <div className="card-content__container-clothes">
 
-        <div className="card-content__container small">
-
-        <div className='slider arrows__block'>
-          <div className='arrows__block-prev'>
-            <img src={arrow} alt="arrow-up" className='arrow-up'/>
-          </div>
-          <div  className='arrows__block-next'>
-            <img src={arrow} alt="arrow-down" className='arrow-down' />
-          </div>
-        </div>
-
-          <div>
-           <img src={cloth} alt="cloth-small" />
-          </div>
-         
-        </div>
-
-        <div className="card-content__container-second big">
-
-       
-
-          <div className='main-cloth-big'>
-            <img src={clothBig} alt="main-cloth-big" />
-          </div>
+          <ProductSlider data-test-id='product-slider'></ProductSlider>
 
           <div className='slider arrows__block'>
             <div className='arrows__block-prev'>
-              <img src={arrow} alt="arrow-left" className='arrow-left'/>
+              <img src={arrowUp} alt="arrow-up" className='arrow-up'/>
             </div>
             <div  className='arrows__block-next'>
-              <img src={arrow} alt="arrow-right" className='arrow-right' />
+              <img src={arrowDown} alt="arrow-down" className='arrow-down' />
             </div>
           </div>
-          
-          
+               
         </div>
+
+     
 
         <div className="card-content__container information">
 
@@ -209,29 +190,33 @@ function CartPage () {
               </div>
 
             </div>
-
           </div>
-
         </div>
-
       </div>
 
       <div className='content__block related-products'>
         <div className='related-products__header'>
           <h3>RELATED PRODUCTS</h3>
 
-          <div className='slider arrows__block'>
-            <div className='arrows__block-prev'>
-              <img src={arrow} alt="arrow-left" className='arrow-left'/>
+          <div className='slider arrows__block swiper-navigation'>
+            <div className='arrows__block-prev' id="swiperPrev" >
+              <img src={arrowLeft} alt="arrow-left" className='arrow-left'/>
             </div>
-            <div  className='arrows__block-next'>
-              <img src={arrow} alt="arrow-right" className='arrow-right' />
+            <div  className='arrows__block-next' id="swiperNext">
+              <img src={arrowRight} alt="arrow-right" className='arrow-right' />
             </div>
           </div>
 
         </div>
 
-        <CategoryBlock category='related' items={relatedItems}></CategoryBlock>
+        
+        
+        <ul className="clothes__related__list grid">
+            
+            <SliderRelated data-test-id='related-slider'></SliderRelated>
+
+        </ul>
+      
 
       </div>
 

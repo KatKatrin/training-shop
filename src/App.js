@@ -14,9 +14,11 @@ function App() {
   return (  
     <Router>
 
-     <header className="header" data-test-id="header">
-      <Header></Header>
-    </header>
+     <header>
+       <div className="header" data-test-id="header">
+        <Header></Header>
+       </div>
+     </header>
 
         <main className="main-content">
           <Routes>
@@ -29,13 +31,7 @@ function App() {
 
             <Route  path='/women/page' element={<CartPage/>}/>
 
-
-
-           
-
-
-            
-               
+             
           </Routes>   
       </main>
 

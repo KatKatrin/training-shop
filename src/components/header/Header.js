@@ -1,5 +1,7 @@
 import './header.scss';
-import {Link, NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import cn from 'classnames';
 
 import phoneImg from './img/group.png';
 import locationImg from './img/location-marker 2.png';
@@ -9,6 +11,8 @@ import envelop from './img/envelop.png';
 import earth from './img/earth.png';
 import person from './img/person.png';
 import search from './img/search.png';
+import burger from './img/bars-solid.svg';
+import closeMark from './img/closeMark.svg';
 
 function Header () {
   return(
@@ -36,39 +40,95 @@ function Header () {
             </div>
       </div>
 
-      <div className="menu" data-test-id="menu">
+           
+              <ToogleBurgerMenu></ToogleBurgerMenu>
 
-         <div className='menu__rectangle'>
-          <div className='menu__logo'>
-            <Link to="/" className='menu__logo__text'>CleverShop</Link>
-          </div>
-          
-            <nav className="menu__block">
-              <ul className="menu__block__navigation lists"> 
-
-                <NavigationMenuHeader></NavigationMenuHeader>
-
-              </ul>
-            </nav>
-        
-            <div className='menu__icons'>
-              <img src={search} alt="navigation-icons" />
-              <img src={earth} alt="navigation-icons" />
-              <img src={person} alt="navigation-icons" />
-              <img src={envelop} alt="navigation-icons" />
-              <div className='elipse'>2</div>
-            </div>
-          </div>
-
-          <div className='menu__rectangle__small'></div>
-        </div>
+    
     </>
   )
 }
 
 export default Header;
 
-function NavigationMenuHeader () {
+
+function ToogleBurgerMenu () {
+
+  const [burgerMenu, setBurgerMenu] = useState(false);
+  const [closeBtn, setCloseBtn] = useState(true);
+  const [navMenu, setNavNenu] = useState(false);
+
+  function onOpenNavigationMenu (){
+    setBurgerMenu(true)
+    setCloseBtn(false)
+    setNavNenu(true)
+    
+    document.body.style.overflow = "hidden";
+  }
+
+  function onCloseNavMenu (e) {
+    setBurgerMenu(false)
+    setCloseBtn(true)
+    setNavNenu(false)
+
+    document.body.style.overflow = "visible";
+  }
+
+ 
+  return(
+    <>
+      
+    <div className="main-menu__block" onClick={burgerMenu?  ((e) => onCloseNavMenu(e)): undefined} >
+        
+            <div className='menu__logo'>
+              <Link to="/" className='header-nav-logo menu__logo__text' data-test-id="header-logo-link">CleverShop</Link>
+            </div>
+            
+            <div className='menu' data-test-id="menu">
+                <NavigationMenuHeader></NavigationMenuHeader>
+            </div>
+      
+            <div className={cn('navigation-menu__toggle', {visible:navMenu})}
+                 onClick={(e) => onCloseNavMenu(e)} data-test-id="burger-menu">
+                <NavigationMenuHeader></NavigationMenuHeader>
+            </div>
+              
+      <div className='menu__icons'>
+
+          <div className='menu__icon active'>
+            <img src={search} alt="navigation-icons" />
+          </div>
+          <div className='menu__icon active'>
+            <img src={earth} alt="navigation-icons" />
+          </div>
+          <div className='menu__icon active' >
+            <img src={person} alt="navigation-icons" />
+          </div>
+          <div className='menu__icon active'>
+            <img src={envelop} alt="navigation-icons" />
+          </div>
+                
+        <div className={cn('menu__icon toggle toggle-burger', {hidden:burgerMenu})} data-test-id="burger-menu-btn" onClick={onOpenNavigationMenu}> 
+          <img src={burger} alt="burger-menu" className='burger-menu'/>
+        </div>
+        <div className={cn('menu__icon toggle toggle-close', {hidden:closeBtn})} onClick={onCloseNavMenu}>
+          <img src={closeMark} alt="close" className='close-mark' />
+        </div>
+
+      </div>
+
+      <div className='menu__rectangle__small'></div>
+
+    </div>
+    </>
+  )
+}
+
+
+
+
+
+
+export function NavigationMenuHeader () {
 
   const arrMenu = ['About Us', 'Women', 'Men', 'Beauty', 'Accessories', 'Blog', 'Contact'];
 
@@ -76,16 +136,20 @@ function NavigationMenuHeader () {
     let path = item.toLowerCase();
 
     return(
-      <li key={i} className="menu__block__navigation list">
-        <NavLink key={i + 1} to={`/${path}`}  className='menu-item' data-test-id={`menu-link-${path}`}>{item}</NavLink>  
+      <li key={i} className="menu__list-item">
+        <Link key={i + 1} to={`/${path}`}  className='menu-item' data-test-id={`menu-link-${path}`}>{item}</Link>  
       </li>
     )
   })
 
-   return(
+   return (
     <>
-    {menuResult}
+     <nav className="menu__block__navigation">
+      <ul className="menu__navigation-list"> 
+        {menuResult}
+      </ul>
+    </nav>
     </>
-    
   )
-}
+};
+
