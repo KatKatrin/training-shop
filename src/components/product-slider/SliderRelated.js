@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+
 import Rating from "../rating/Rating";
 import './sliderRelated.scss';
 
