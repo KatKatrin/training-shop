@@ -7,8 +7,6 @@ import support from "./img/support.png"
 import returnImg from "./img/return.png"
 
 
-
-
 import SliderMainPage from '../slider/Slider';
 
 
