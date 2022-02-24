@@ -1,6 +1,5 @@
 import './mainBlocks.scss'
 import men from "./img/men.png";
-import banner from "./img/banner.jpg";
 import accessories from "./img/accessories.png";
 import women from "./img/block.png";
 import car from "./img/car.png";

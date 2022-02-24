@@ -1,6 +1,6 @@
 import './header.scss';
 import {Link} from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import cn from 'classnames';
 
 import phoneImg from './img/group.png';
