@@ -20,9 +20,9 @@ function MainBlock () {
 
             <div className="main-content__block__item banner" >
 
-              <div className='main-title-banner'>
+              <div className='main-title-banner' data-test-id="main-slider">
 
-                <SliderMainPage data-test-id="main-slider"></SliderMainPage>
+                <SliderMainPage ></SliderMainPage>
 
                 {/* <img src={banner} alt="banner" className='big-title-banner'/> */}
 
