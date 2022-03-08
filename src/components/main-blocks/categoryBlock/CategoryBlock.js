@@ -1,50 +1,41 @@
-import Rating from "../../rating/Rating";
+import CardItem from '../../card-item/CardItem';
 import './categoryBlock.scss';
 
-import {Link} from 'react-router-dom';
 
+const CategoryBlock = ({category, items, filter}) => {
 
+  const renderItems = (arrCards) => {
 
-function CategoryBlock ({category, items}) {
+      const card = arrCards.map( (itemCard, i) => {
+
+        if(itemCard.particulars[filter]){
+
+          return(
+            <li className="cloth__item" key={i}>
+              {<CardItem category={category} itemCard={itemCard}></CardItem>}
+            </li>
+          )
+        }
+
+        return ''
+      });
+
+    return card
+  }
 
   
-  function renderItems (arr) {
-    const items = arr.map((item, i) => {
-          
-      return (
-            <li className="cloth__item" key={i}>
+  const result= renderItems(items);
 
-             <Link to={'/women/page'}>
-               <img src={require(`../${category}Block/${category}Img/${i+1}.jpg`)} alt={item.productType} className={`${category}__item-img `}/>
-               </Link>
-                                  
-                    <div className="cloth__item-name">{item.productType}</div>
-                    <div className="cloth__information">
-                      <div className="cloth__item-price">{`$ ${item.price}.00`}</div>
-                     <Rating color={'lightgray'}/>
-                    </div>
-            </li>
-        )
-    });
-
-    return (
-      <section className="content-type catalog">
-        <ul className="clothes__list grid">
-            {items}
-        </ul>
-      </section>
-    )
-}
 
   return (
-          <>
-          {renderItems(items)}
-          </>
+    <section className="content-type catalog">
+    <ul className="clothes__list grid">
+        {result}
+    </ul>
+  </section>
   )
 }
 
+
 export default CategoryBlock;
-
-
-
 

@@ -1,26 +1,34 @@
+import './product-slider.scss';
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
+
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-
 import "swiper/css/bundle";
-
-import './product-slider.scss';
-import clothBig from '../card-item/img/bigCloth.png';
-import clothSmall from '../card-item/img/cloth.png';
-
-
-
-// import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper";
 
-function ProductSlider () {
+
+
+function ProductSlider ({images}) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   
+  const getPictures = (images, nameForClass) => {
+    return (
+      images.map((image,i) => {
+        return(
+        <SwiperSlide key={i}>
+          <img src={`https://training.cleverland.by/shop${image.url}`} alt="main-clothes" className={nameForClass} />
+        </SwiperSlide>
+        )
+      })
+    )
+  }
+
+  const bigPicture = getPictures(images, 'main-cloth-big');
+  const smallPicture = getPictures(images, 'additional-cloth-small' )
 
   return (
     <>
@@ -37,28 +45,18 @@ function ProductSlider () {
             onSwiper={setThumbsSwiper}
           
             spaceBetween={10}
-            slidesPerView={4}
+            slidesPerView={images.length <  4 ? images.length : 4}
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper"
           >
           
-          <SwiperSlide>
-          <img src={clothSmall} alt="cloth-small" />
-          </SwiperSlide>
-          <SwiperSlide>
-          <img src={clothSmall} alt="cloth-small" />  
-          </SwiperSlide>
-          <SwiperSlide>
-          <img src={clothSmall} alt="cloth-small" />  
-          </SwiperSlide>
-          <SwiperSlide>
-          <img src={clothSmall} alt="cloth-small" />  
-          </SwiperSlide>
-          <SwiperSlide>
-          <img src={clothSmall} alt="cloth-small" />  
-          </SwiperSlide>
+    {smallPicture}
+    
+    
+    
+    
 
       </Swiper>
 
@@ -75,21 +73,7 @@ function ProductSlider () {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2"
       >
-      <SwiperSlide>
-        <img src={clothBig} alt="main-clothes" className='main-cloth-big' />
-        </SwiperSlide>
-        <SwiperSlide>
-        <img src={clothBig} alt="main-clothes" className='main-cloth-big' />
-        </SwiperSlide>
-        <SwiperSlide>
-        <img src={clothBig} alt="main-clothes" className='main-cloth-big' />
-        </SwiperSlide>
-        <SwiperSlide>
-        <img src={clothBig} alt="main-clothes" className='main-cloth-big' />
-          </SwiperSlide>
-          <SwiperSlide>
-        <img src={clothBig} alt="main-clothes" className='main-cloth-big' />
-          </SwiperSlide>
+      {bigPicture}
     </Swiper>
      
     </>

@@ -15,6 +15,10 @@
     display: flex;
     align-items: center;
   }
+
+  &__item:hover{
+    cursor: pointer;
+  }
 }
 
 // under banner
@@ -101,6 +105,22 @@
 
         > .info {
           padding-top: 16px;
+
+          .mini-img{
+            width: 64px;
+            height: 64px;
+          }
+
+          span{
+            margin-right: 16px;
+            padding: 1px;
+            cursor: pointer;
+          }
+
+          span.active{
+            border: 1px solid black;
+          }
+         
         }
       }
 
@@ -182,6 +202,10 @@
         span{
           font-weight: normal;
           opacity: 0.6;
+        }
+
+        span::after {
+           content: ',';
         }
       }
     }

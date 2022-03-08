@@ -1,9 +1,8 @@
 //import './App.css';
 import {HashRouter as Router, Route, Routes} from "react-router-dom";
 import Header from "./components/header/Header";
-import WomenPage from "./pages/WomenPage";
 import MenPage from "./pages/MenPage";
-import CartPage from "./pages/CatrPage";
+import CardPage from "./pages/CardPage";
 import Footer from "./components/footer/Footer";
 import MainPage from "./pages/MainPage";
 
@@ -23,13 +22,15 @@ function App() {
         <main className="main-content">
           <Routes>
            
-            <Route  path='/' element={<MainPage/>}/>
+            <Route exact path='/' element={<MainPage/>}/>
 
-            <Route  path='/women' element={<WomenPage/>}/>
+            <Route exact path='/women' element={<MenPage category={'women'}/>}/>
 
-            <Route  path='/men' element={<MenPage/>}/>
+            <Route exact path='/men' element={<MenPage category={'men'}/>}/>
 
-            <Route  path='/women/page' element={<CartPage/>}/>
+            <Route exact path='/:category/:id' element={<CardPage/>}/>
+
+           
 
              
           </Routes>   

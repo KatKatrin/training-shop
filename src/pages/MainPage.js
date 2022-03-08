@@ -1,26 +1,37 @@
-
+import { useState } from "react";
 import MainBlock from "../components/main-blocks/MainBlocks";
-import ProductsHeader from "../components/products-header/ProductsHeader"
+
 import CategoryBlock from "../components/main-blocks/categoryBlock/CategoryBlock"
-import womenItems from "../components/main-blocks/womenBlock/womenItems";
-import menItems from "../components/main-blocks/mensBlock/menItems";
+
+import serverData from '../components/main-blocks/serverData/serverData';
+
 import ActualInfo from "../components/main-blocks/actualInformation/ActualInfo";
 import Blog from "../components/main-blocks/blog/Blog";
 import Subscribe from "../components/main-blocks/subscribeBlock/Subscribe";
+import ProductsFilter from "../components/products-header/ProductsHeader";
 
 function MainPage () {
 
+  const [filterWomen, setFilterWomen] = useState('isNewArrivals');
+  const [filterMen, setFilterMen] = useState('isNewArrivals');
+
+  const onFilterSelectWomen = (filter) => {
+    return setFilterWomen(filter)
+  }
+
+  const onFilterSelectMen = (filter) => {
+   return setFilterMen(filter)
+  }
+  
+
   return(
     <>
-   
-    {/* <div className="main-content"> */}
-      
-      
       <MainBlock></MainBlock>
 
       <div className="main-box content__block women">
-          <ProductsHeader category="WOMEN’S" classHeader="women"/>
-          <CategoryBlock category="women" items={womenItems} />
+         
+          <ProductsFilter category="WOMEN’S" classHeader="women" filter={filterWomen} onFilterSelect={onFilterSelectWomen}></ProductsFilter>
+          <CategoryBlock category="women" items={serverData.women} filter={filterWomen} />
           
           <button className="button button__main button__long">
               <div className="inner">SEE ALL</div>
@@ -28,8 +39,9 @@ function MainPage () {
       </div>
 
       <div className="main-box content__block men">
-          <ProductsHeader category="MEN’S" classHeader="men"/>
-          <CategoryBlock category="mens" items={menItems} />
+          
+          <ProductsFilter category="MEN’S" classHeader="men" filter={filterMen} onFilterSelect={onFilterSelectMen}></ProductsFilter>
+          <CategoryBlock category="men" items={serverData.men} filter={filterMen} /> 
           
           <button className="button button__main button__long">
               <div className="inner">SEE ALL</div>
@@ -37,15 +49,9 @@ function MainPage () {
       </div>
 
       <ActualInfo></ActualInfo>
-
       <Subscribe></Subscribe>
-
       <Blog></Blog>
 
-      
-    {/* </div> */}
-
-   
     </>
   )
 };

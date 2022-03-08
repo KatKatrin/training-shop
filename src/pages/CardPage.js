@@ -1,13 +1,12 @@
 import './banner.scss';
 
+import serverData from '../components/main-blocks/serverData/serverData'
 import Banner from "../components/banner/Banner";
 import Rating from "../components/rating/Rating";
 
-
-import sizes from '../components/card-item/img/sizes.png';
 import addCard from '../components/card-item/img/addCard.png';
 import paySystem from '../components/card-item/img/paySystem.png';
-import lineCloth from '../components/card-item/img/lineCloth.png';
+
 import sizeGuide from '../components/card-item/img/sizeGuide.png';
 
 import car from '../components/card-item/img/truck.png';
@@ -20,21 +19,88 @@ import arrowRight from '../constant/arrows/arrowRight.png';
 import arrowUp from '../constant/arrows/arrowUp.png';
 import arrowDown from '../constant/arrows/arrowDown.png';
 import ProductSlider from '../components/product-slider/ProductSlider';
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 import SliderRelated from '../components/product-slider/SliderRelated';
 
 
 
-function CartPage () {
+function CardPage () {
 
+  const {category, id} =  useParams();
+
+  const {name, price, material, sizes, reviews, rating, images} = serverData[category].filter(item => item.id === id)[0];
+
+  const [size, setSize] = useState(sizes[0]);
+  const [color, setColor] = useState(images[0].color)
+
+
+ 
+  
+  const availableSize = sizes.map((item,i) => {
+    const changeActivSize = () => (setSize(item));
+    const clazz = item === size? 'active' : null;
+
+    return(
+      <span className={clazz} key={i} onClick={changeActivSize}>{item}</span>
+    )
+  })
+
+  const allReviews = reviews.map((item,i) => {
+    const {name, text, rating, id} = item;
+
+    return(
+      <div className='person-review' key={i}>
+              <div className='person-review__header' key={id}>
+                <h4>{name}</h4>
+                <div>
+                  <span className='person-review__time'> 3 months ago</span>
+                  <Rating ratingNumber={rating}/>
+                </div>
+              </div>
+              
+              <div className='person-review__text'>
+                {text}
+              </div>
+      </div>
+    )
+  });
+
+  const getSmallImg = (images) => {
+    let colorArr = []
+
+   return( images.map((image,i) => {
+
+      if (!colorArr.includes(image.color)){
+        colorArr = [...colorArr, image.color]
+        const changeColor = () => (setColor( image.color));
+        
+        return (
+          <span key={i}>
+            <img src={`https://training.cleverland.by/shop${image.url}`}
+                 alt="clothes" 
+                 className='mini-img'
+                 onClick={changeColor}/>
+          </span>
+        )
+      }
+      return null
+    })
+   )
+  }
+
+
+  
+  const quantityRewiews = reviews.length;
 
   return(
     <div className="main-content">
-      <Banner bannerName={"Women's tracksuit Q109"}></Banner>
+      <Banner bannerName={name}></Banner>
 
       <div className='under-banner-info'>
         <div className='info-block stars-rating'>
-          <Rating color={'#F0CC84'}/>
-          <span className='quantity__review'> 2 Reviews</span>
+          <Rating ratingNumber={rating}/>
+          <span className='quantity__review'> {`${quantityRewiews} Reviews`}</span>
         </div>
         <div className='info-block availability'>
           <div> SKU: <span>777</span></div>
@@ -47,7 +113,7 @@ function CartPage () {
 
         <div className="card-content__container-clothes">
 
-          <ProductSlider data-test-id='product-slider'></ProductSlider>
+          <ProductSlider images={images} data-test-id='product-slider'></ProductSlider>
 
           <div className='slider-vertical__block'>
             <button>
@@ -68,19 +134,20 @@ function CartPage () {
           <div className='information__cloth'>
 
             <div className='info color'>
-              COLOR: <span>Blue</span>
+              COLOR: <span>{color}</span>
             </div>
 
-            <div className='info'>
-              <img src={lineCloth} alt="clothes" />
+            <div className='info pictures'>
+             {getSmallImg(images)}
+              
             </div>
 
             <div className='info size'>
-              SIZE: <span>S</span>
+              SIZE: <span>{size}</span>
             </div>
 
-            <div className='info size__picture'>
-              <img src={sizes} alt="sizes" />
+            <div className='info size__available'>
+              {availableSize}
             </div>
 
             <div className='info size__guide'>
@@ -90,7 +157,7 @@ function CartPage () {
           </div>
 
           <div className='information__price'>
-            <div className='price'> $ 379.99</div>
+            <div className='price'> { price.toString().includes('.') ? (`$ ${price}`) : (`$ ${price}.00`)}</div>
             <div><img src={addCard} alt="add card" /></div>
           </div>
 
@@ -136,8 +203,8 @@ function CartPage () {
 
               <div className='additional-information__cloth'>
                 <p>Color: <span>Blue, White, Black, Grey</span></p>
-                <p>Size: <span>XS, S, M, L</span> </p>
-                <p>Material: <span>100% Polyester</span></p>
+                <p>Size: {availableSize} </p>
+                <p>Material: <span>{material}</span></p>
               </div>
             </div>
           
@@ -149,8 +216,8 @@ function CartPage () {
             <div className='rating__review'>
 
               <div className='stars-rating'>
-                <Rating color={'#F0CC84'}/>
-                <span className='quantity__review'> 2 Reviews</span>
+                <Rating ratingNumber={rating}/>
+                <span className='quantity__review'> {`${quantityRewiews} Reviews`}</span>
               </div>
 
               <div className='write__review'>
@@ -160,37 +227,8 @@ function CartPage () {
 
             </div>
 
-            <div className='person-review'>
+            {allReviews}
 
-              <div className='person-review__header'>
-                <h4>Oleh Chabanov</h4>
-                <div>
-                  <span className='person-review__time'> 3 months ago</span>
-                  <Rating color={'#F0CC84'}/>
-                </div>
-              </div>
-              
-              <div className='person-review__text'>
-                On the other hand, we denounce with righteous indignation and like men who are so beguiled and demoralized by the charms of pleasure of the moment
-              </div>
-
-            </div>
-
-            <div className='person-review'>
-
-              <div className='person-review__header'>
-                <h4>ShAmAn design</h4>
-                <div>
-                  <span className='person-review__time'> 3 months ago</span>
-                  <Rating color={'#F0CC84'}/>
-                </div>
-              </div>
-
-              <div className='person-review__text'>
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-              </div>
-
-            </div>
           </div>
         </div>
       </div>
@@ -215,7 +253,7 @@ function CartPage () {
         
         <ul className="clothes__related__list grid">
             
-            <SliderRelated data-test-id='related-slider'></SliderRelated>
+             <SliderRelated data-test-id='related-slider'></SliderRelated> 
 
         </ul>
       
@@ -227,4 +265,4 @@ function CartPage () {
   )
 }
 
-export default CartPage;
+export default CardPage;
