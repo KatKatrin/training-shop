@@ -1,5 +1,5 @@
 import './banner.scss';
-
+import { Link } from 'react-router-dom';
 import arrow from './img/arrow.png';
 import share from './img/share.png';
 
@@ -9,12 +9,20 @@ function Banner ({bannerName}) {
     <>
 
       <div className="banner-block">
+        
         <div className="banner-information">
-          <span>Home</span>
+          <Link to={'/'}>
+            <span>Home</span>
+          </Link>
+          
           <span>
             <img src={arrow} alt="arrow" />
           </span>
-          <span>{bannerName}</span>
+
+          <Link to={`/${bannerName}`}>
+            <span>{bannerName}</span>
+          </Link>
+         
         </div>
 
         <div className="banner-share">

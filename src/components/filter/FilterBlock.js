@@ -42,7 +42,7 @@ const FilterBlock = ({category, onChangeInput, onHandleChangeStatusFilter, statu
           const oneOfFilter = filter[filterName].map((item,i) => {
             return(
               <div className={`filter-item ${item}`} key={item} onChange={(e) => {onChangeInput(e)} } >
-                <input type="checkbox" className={filterName} name={item} data-test-id={`filter-${filterName}-${item}`}/>
+                <input type="checkbox" className={filterName} id={item} name={item} data-test-id={`filter-${filterName}-${item}`}/>
                 <label htmlFor={item}>{item}</label>
               </div>
             )

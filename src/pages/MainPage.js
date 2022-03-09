@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Link} from 'react-router-dom';
 import MainBlock from "../components/main-blocks/MainBlocks";
 
 import CategoryBlock from "../components/main-blocks/categoryBlock/CategoryBlock"
@@ -33,9 +34,12 @@ function MainPage () {
           <ProductsFilter category="WOMEN’S" classHeader="women" filter={filterWomen} onFilterSelect={onFilterSelectWomen}></ProductsFilter>
           <CategoryBlock category="women" items={serverData.women} filter={filterWomen} />
           
-          <button className="button button__main button__long">
-              <div className="inner">SEE ALL</div>
-          </button>
+          <Link to={'/women'}>
+            <button className="button button__main button__long">
+                <div className="inner">SEE ALL</div>
+            </button>
+          </Link>
+        
       </div>
 
       <div className="main-box content__block men">
@@ -43,9 +47,11 @@ function MainPage () {
           <ProductsFilter category="MEN’S" classHeader="men" filter={filterMen} onFilterSelect={onFilterSelectMen}></ProductsFilter>
           <CategoryBlock category="men" items={serverData.men} filter={filterMen} /> 
           
-          <button className="button button__main button__long">
-              <div className="inner">SEE ALL</div>
-          </button>
+          <Link to={'/men'}>
+            <button className="button button__main button__long">
+                <div className="inner">SEE ALL</div>
+            </button>
+          </Link>
       </div>
 
       <ActualInfo></ActualInfo>

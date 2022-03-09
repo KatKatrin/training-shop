@@ -79,6 +79,7 @@ function MenPage ({category}) {
 
     if(!e.target.checked) {
       deleteFilter(e.target.classList.value, e.target.name)
+      
       putAllFilters(selectedColor, 'color')
       putAllFilters(selectedSizes, 'size')
       putAllFilters(selectedBrand, 'brand')

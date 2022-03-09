@@ -20,7 +20,7 @@ import arrowUp from '../constant/arrows/arrowUp.png';
 import arrowDown from '../constant/arrows/arrowDown.png';
 import ProductSlider from '../components/product-slider/ProductSlider';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SliderRelated from '../components/product-slider/SliderRelated';
 
 
@@ -31,9 +31,16 @@ function CardPage () {
 
   const {name, price, material, sizes, reviews, rating, images} = serverData[category].filter(item => item.id === id)[0];
 
+  console.log(name)
+
   const [size, setSize] = useState(sizes[0]);
   const [color, setColor] = useState(images[0].color)
 
+  useEffect(() => {
+    setSize(sizes[0]);
+    setColor(images[0].color)
+
+  }, [sizes, images])
    
   const availableSize = sizes.map((item,i) => {
     const changeActivSize = () => (setSize(item));
@@ -72,12 +79,14 @@ function CardPage () {
       if (!colorArr.includes(image.color)){
         colorArr = [...colorArr, image.color]
         const changeColor = () => (setColor( image.color));
+
+        const clazz = image.color === color ? 'active' : null;
         
         return (
           <span key={i}>
             <img src={`https://training.cleverland.by/shop${image.url}`}
                  alt="clothes" 
-                 className='mini-img'
+                 className={`mini-img ${clazz}`}
                  onClick={changeColor}/>
           </span>
         )
