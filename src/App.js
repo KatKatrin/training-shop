@@ -5,6 +5,7 @@ import MenPage from "./pages/MenPage";
 import CardPage from "./pages/CardPage";
 import Footer from "./components/footer/Footer";
 import MainPage from "./pages/MainPage";
+import WomenPage from "./pages/WomenPage";
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
            
             <Route exact path='/' element={<MainPage/>}/>
 
-            <Route exact path='/women' element={<MenPage category={'women'}/>}/>
+            <Route exact path='/women' element={<WomenPage />}/>
 
             <Route exact path='/men' element={<MenPage category={'men'}/>}/>
 

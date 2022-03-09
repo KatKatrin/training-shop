@@ -9,7 +9,7 @@ import FilterBlock from "../components/filter/FilterBlock";
 import {getAllFilters} from '../components/filter/FilterBlock'
 
 function MenPage ({category}) {
-  
+
   const allFilters = getAllFilters(serverData, category);
   const [color, sizes, brand] = allFilters;
   

@@ -36,7 +36,7 @@ const ProductsFilter = ({category, classHeader, filter, onFilterSelect}) => {
             className={`${clazz}`}
             key={name}
             onClick={() => {onFilterSelect(particulars)}}
-            data-test-id={`clothes-${category}-${particulars}`}>            
+            data-test-id={`clothes-${classHeader}-${particulars}`}>            
             {name}
         </span>
     )

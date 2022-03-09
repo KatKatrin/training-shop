@@ -6,7 +6,7 @@ const CardItem = ({category, itemCard}) => {
 
     return(
       <>
-        <Link to={`/${category}/${id}`}>
+        <Link to={`/${category}/${id}`} data-test-id={`clothes-card-${category}`}>
                 <img src={`https://training.cleverland.by/shop${images[0].url}`} alt="clothes" /> 
                 {discount ? <div className='discout'>{discount}</div> : null}
                 
