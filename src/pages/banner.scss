@@ -113,14 +113,25 @@
 
           span{
             margin-right: 16px;
-            padding: 1px;
+            padding: 2px;
             cursor: pointer;
           }
 
-          span.active{
-            border: 1px solid black;
+          
+          &.size__available{
+            height: 40px;
+
+            > span{
+              padding-top: 7px;
+              padding-bottom: 7px;
+              background-color: #F8F8F8;
+            }
           }
-         
+
+          span.active{
+            border: 2px solid black;
+            background-color: white;
+          }
         }
       }
 

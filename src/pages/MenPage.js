@@ -23,9 +23,7 @@ function MenPage ({category}) {
   const [beforeBrand, setBeforeBrand] = useState([]);
   const [beforePrice, setBeforePrice] = useState([]);
 
-  // console.log(selectedPrice)
-  // console.log(beforePrice)
-
+  
   const [statusFilter, setStatusFilter] = useState(false);
   
   const onHandleChangeStatusFilter = () => {
@@ -60,6 +58,7 @@ function MenPage ({category}) {
   }
 
   function putAllFilters (stateOfFilter, nameOffilter) {
+    console.log(stateOfFilter.length)
     if(stateOfFilter.length === 1){
       switch(nameOffilter){
         case 'color':
@@ -153,7 +152,6 @@ export const CategoryBlockMen = ({category, items, filter, statusFilter, checked
    
   const renderItems = (arrCards) => {
     
-
         const card = arrCards.map( (itemCard, i) => {
           
           if (itemCard.images.filter(item => colors.includes(item.color)).length &&
@@ -161,7 +159,6 @@ export const CategoryBlockMen = ({category, items, filter, statusFilter, checked
             brands.includes(itemCard.brand) &&
             prices.some((element)=> ((element[0] < itemCard.price) && (element[1] > itemCard.price)) )) {
 
-             
             quantity++
 
             return(

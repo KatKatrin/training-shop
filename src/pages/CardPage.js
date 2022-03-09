@@ -130,7 +130,7 @@ function CardPage () {
           <div className='information__cloth'>
 
             <div className='info color'>
-              COLOR: <span>{color}</span>
+              COLOR: <span style={{'fontWeight':'600'}}>{color}</span>
             </div>
 
             <div className='info pictures'>
@@ -139,7 +139,7 @@ function CardPage () {
             </div>
 
             <div className='info size'>
-              SIZE: <span>{size}</span>
+              SIZE: <span style={{'fontWeight':'600'}}>{size}</span>
             </div>
 
             <div className='info size__available'>
@@ -249,7 +249,7 @@ function CardPage () {
         
         <ul className="clothes__related__list grid">
             
-             <SliderRelated data-test-id='related-slider'></SliderRelated> 
+             <SliderRelated category={category} data-test-id='related-slider'></SliderRelated> 
 
         </ul>
       

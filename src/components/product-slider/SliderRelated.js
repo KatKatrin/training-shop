@@ -1,8 +1,9 @@
-
+import {Link} from 'react-router-dom';
+import serverDats from '../main-blocks/serverData/serverData';
 import Rating from "../rating/Rating";
 import './sliderRelated.scss';
 
-import relatedItems from "../main-blocks/relatedBlock/relatedItems";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,17 +14,12 @@ import "swiper/css/pagination";
 
 import "swiper/css/bundle";
 
-
-
-// import required modules
 import { Grid, Navigation } from "swiper";
 
-export default function SliderRelated() {
+export default function SliderRelated({category}) {
 
-  const result = RelatedGrid('related', relatedItems);
-
+  const result = RelatedGrid(category)
   
-
   return (
     <>
       <Swiper
@@ -59,29 +55,30 @@ export default function SliderRelated() {
 }
 
 
-function RelatedGrid (category, items) {
-
+function RelatedGrid (category) {
   
-    const itemsSwiper = items.map((item, i) => {
+    const itemsSwiper = serverDats[category].map((item, i) => {
+
+      const {name, images, price, rating, id, discount} = item;
       return (
-        <SwiperSlide>
-            <li className="cloth__item" key={i + 1}>
-           
-               <img src={require(`../main-blocks/${category}Block/${category}Img/${i+1}.jpg`)} alt={item.productType} className={`${category}__item-img `}/>
-                          
-                    <div className="cloth__item-name">{item.productType}</div>
+        <SwiperSlide key={i}>
+            <li className="cloth__item" key={id}>
+            <Link to={`/${category}/${id}`} data-test-id={`clothes-card-${category}`}>
+               <img src={`https://training.cleverland.by/shop${images[0].url}`} alt={'clothes'} className={`${'related'}__item-img `}/>
+               {discount ? <div className='discout'>{discount}</div> : null}
+            </Link>             
+                    <div className="cloth__item-name">{name}</div>
                     <div className="cloth__information">
-                      <div className="cloth__item-price">{`$ ${item.price}.00`}</div>
-                     <Rating color={'lightgray'}/>
+                      <div className="cloth__item-price">{`$ ${price}.00`}</div>
+                     <Rating ratingNumber={rating}/>
                     </div>
             </li>
         </SwiperSlide>
       )
     });
 
-    return itemsSwiper;
+    return(
+      itemsSwiper
+    ) ;
  
 }
-
-
-
