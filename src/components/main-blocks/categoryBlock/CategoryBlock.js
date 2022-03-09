@@ -12,7 +12,7 @@ const CategoryBlock = ({category, items, filter}) => {
 
           return(
             <li className="cloth__item" key={i}>
-              {<CardItem category={category} itemCard={itemCard}></CardItem>}
+              {<CardItem category={category} itemCard={itemCard} data-test-id={`clothes-card-${category}`}></CardItem>}
             </li>
           )
         }
@@ -28,7 +28,7 @@ const CategoryBlock = ({category, items, filter}) => {
 
 
   return (
-    <section className="content-type catalog">
+    <section className="content-type catalog" data-test-id={`clothes-${category}`}>
     <ul className="clothes__list grid">
         {result}
     </ul>
