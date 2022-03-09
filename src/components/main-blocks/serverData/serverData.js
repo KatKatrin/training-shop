@@ -806,7 +806,7 @@
       brand: 'Produkt',
       material: 'Акрил - 50%, Хлопок - 50%',
       rating: 4,
-      price: 200.8,
+      price: 202,
       sizes: ['S INT', 'M INT', 'XXL INT', 'XL INT'],
       discount: null,
       reviews: [

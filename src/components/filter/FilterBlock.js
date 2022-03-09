@@ -14,7 +14,7 @@ const FilterBlock = ({category, onChangeInput, onHandleChangeStatusFilter, statu
   const allFilters = getAllFilters(serverData, category);
 
   function renderMoneyFilter () {
-    const allPrices = [[0,50], [51, 100], [101, 200], [201, 400]];
+    const allPrices = [[0,50], [51, 100], [101, 200], [201, 500]];
   
    const result = allPrices.map((item,i) => {
       return (
@@ -41,8 +41,8 @@ const FilterBlock = ({category, onChangeInput, onHandleChangeStatusFilter, statu
 
           const oneOfFilter = filter[filterName].map((item,i) => {
             return(
-              <div className={`filter-item ${item}`} key={item} onChange={(e) => {onChangeInput(e)} } data-test-id={`filter-${filterName}-${item}`}>
-                <input type="checkbox" className={filterName} name={item}/>
+              <div className={`filter-item ${item}`} key={item} onChange={(e) => {onChangeInput(e)} } >
+                <input type="checkbox" className={filterName} name={item} data-test-id={`filter-${filterName}-${item}`}/>
                 <label htmlFor={item}>{item}</label>
               </div>
             )
@@ -141,5 +141,5 @@ export function getAllFilters(serverData, category) {
        return (allBrands)
       }
     })
-    return([{color: allColors}, {sizes:allSizes}, {brand:allBrands}])
+    return([{color: allColors}, {size:allSizes}, {brand:allBrands}])
 }

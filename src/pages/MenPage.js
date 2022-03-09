@@ -11,10 +11,10 @@ import {getAllFilters} from '../components/filter/FilterBlock'
 function MenPage ({category}) {
 
   const allFilters = getAllFilters(serverData, category);
-  const [color, sizes, brand] = allFilters;
+  const [color, size, brand] = allFilters;
   
   const [selectedColor, setSelectedColor] = useState(color.color);
-  const [selectedSizes, setSelectedSizes] = useState(sizes.sizes);
+  const [selectedSizes, setSelectedSizes] = useState(size.size);
   const [selectedBrand, setSelectedBrand] = useState(brand.brand);
   const [selectedPrice, setSelectedPrice] = useState([[0,50], [51, 100], [101, 200], [201, 400]]);
 
@@ -23,8 +23,8 @@ function MenPage ({category}) {
   const [beforeBrand, setBeforeBrand] = useState([]);
   const [beforePrice, setBeforePrice] = useState([]);
 
-  console.log(selectedPrice)
-  console.log(beforePrice)
+  // console.log(selectedPrice)
+  // console.log(beforePrice)
 
   const [statusFilter, setStatusFilter] = useState(false);
   
@@ -39,7 +39,7 @@ function MenPage ({category}) {
         setBeforeSColor(beforeColor.filter(item => item !== selectTarget));
         setSelectedColor(selectedColor.filter(item => item !== selectTarget));
         break
-      case 'sizes':
+      case 'size':
         setBeforeSizes(beforeSizes.filter(item => item !== selectTarget));
         setSelectedSizes(selectedSizes.filter(item => item !== selectTarget));
         break;
@@ -64,12 +64,12 @@ function MenPage ({category}) {
       switch(nameOffilter){
         case 'color':
           return  setSelectedColor(color.color) ;
-        case 'sizes':
-          return  setSelectedSizes(sizes.sizes) ;
+        case 'size':
+          return  setSelectedSizes(size.size) ;
         case 'brand':
           return  setSelectedBrand(brand.brand) ;
         case 'price' :
-          return setSelectedPrice([[0,50], [51, 100], [101, 200], [201, 400]]);
+          return setSelectedPrice([[0,50], [51, 100], [101, 200], [201, 500]]);
         default: return 
       }
     }
@@ -81,7 +81,7 @@ function MenPage ({category}) {
     if(!e.target.checked) {
       deleteFilter(e.target.classList.value, e.target.name)
       putAllFilters(selectedColor, 'color')
-      putAllFilters(selectedSizes, 'sizes')
+      putAllFilters(selectedSizes, 'size')
       putAllFilters(selectedBrand, 'brand')
       putAllFilters(selectedPrice, 'price')
     }
@@ -93,7 +93,7 @@ function MenPage ({category}) {
       setBeforeSColor([...beforeColor, e.target.name])
     }
 
-    if(e.target.classList.value === 'sizes' && e.target.checked) {
+    if(e.target.classList.value === 'size' && e.target.checked) {
       
       const result = [...beforeSizes, e.target.name]
       setSelectedSizes(result)
@@ -155,11 +155,13 @@ export const CategoryBlockMen = ({category, items, filter, statusFilter, checked
     
 
         const card = arrCards.map( (itemCard, i) => {
+          
           if (itemCard.images.filter(item => colors.includes(item.color)).length &&
             itemCard.sizes.filter(item => sizes.includes(item)).length &&
             brands.includes(itemCard.brand) &&
             prices.some((element)=> ((element[0] < itemCard.price) && (element[1] > itemCard.price)) )) {
 
+             
             quantity++
 
             return(
