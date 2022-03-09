@@ -19,7 +19,7 @@ const FilterBlock = ({category, onChangeInput, onHandleChangeStatusFilter, statu
    const result = allPrices.map((item,i) => {
       return (
         <div className='filter-item' key={i} onChange={(e) => {onChangeInput(e)} } >
-          <input type="checkbox"  name={item} className='price' data-info={item}/>
+          <input type="checkbox" id={item[1]} name={item} className='price' data-info={item}/>
           <label htmlFor={item[1]}>{`$${item[0]} - $${item[1]}`}</label>
       </div>
       )

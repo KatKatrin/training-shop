@@ -5,8 +5,6 @@ import share from './img/share.png';
 
 function Banner ({bannerName, product}) {
 
-  console.log(product)
-
   return (
     <>
 
