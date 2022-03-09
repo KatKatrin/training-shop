@@ -118,7 +118,7 @@ function MenPage ({category}) {
 
 
   return (
-    <div className="main-content">
+    <div className="main-content" data-test-id={`products-page-${category}`}>
      <Banner bannerName={category}></Banner>
      <FilterBlock category={category} onChangeInput={onChangeInput} 
      onHandleChangeStatusFilter={onHandleChangeStatusFilter}

@@ -34,9 +34,7 @@ function CardPage () {
   const [size, setSize] = useState(sizes[0]);
   const [color, setColor] = useState(images[0].color)
 
-
- 
-  
+   
   const availableSize = sizes.map((item,i) => {
     const changeActivSize = () => (setSize(item));
     const clazz = item === size? 'active' : null;
@@ -89,12 +87,10 @@ function CardPage () {
    )
   }
 
-
-  
   const quantityRewiews = reviews.length;
 
   return(
-    <div className="main-content">
+    <div className="main-content" data-test-id={`product-page-${category}`}>
       <Banner bannerName={name}></Banner>
 
       <div className='under-banner-info'>

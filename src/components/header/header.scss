@@ -156,7 +156,7 @@
 
     .menu__block__navigation {
     
-      @media screen and (max-width:1200px) {
+      @media screen and (max-width:990px) {
         display: none;
       }
   
@@ -168,12 +168,20 @@
         
         .menu__list-item {
          padding-right: 32px;
+
+          @media screen and (max-width:1200px) {
+            padding-right: 8px;
+          }
          
           > .menu-item {
               font-size: 14px;
               line-height: 16px;
               color: #121212;
               text-decoration-line: none;
+
+              @media screen and (max-width:1200px) {
+                font-size: 12px;
+              }
           }
         }
       }
@@ -207,7 +215,7 @@
       display: none;
     }
 
-    @media screen and (max-width:1200px) {
+    @media screen and (max-width:990px) {
       .menu__icon.toggle.toggle-burger,.menu__icon.toggle-close{
         display: block;
       }
