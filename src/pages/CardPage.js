@@ -100,7 +100,7 @@ function CardPage () {
 
   return(
     <div className="main-content" data-test-id={`product-page-${category}`}>
-      <Banner bannerName={name}></Banner>
+      <Banner bannerName={category} product={name}></Banner>
 
       <div className='under-banner-info'>
         <div className='info-block stars-rating'>

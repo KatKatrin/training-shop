@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import arrow from './img/arrow.png';
 import share from './img/share.png';
 
-function Banner ({bannerName}) {
+function Banner ({bannerName, product}) {
+
+  console.log(product)
 
   return (
     <>
@@ -22,7 +24,14 @@ function Banner ({bannerName}) {
           <Link to={`/${bannerName}`}>
             <span>{bannerName}</span>
           </Link>
-         
+
+         {product ? 
+            <span>
+              <img src={arrow} alt="arrow" />
+              {` ${product}`}
+            </span> 
+          :  null
+          }
         </div>
 
         <div className="banner-share">
