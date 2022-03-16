@@ -34,8 +34,7 @@ const Cart = () => {
              
          const finalPrise = (price % 1 === 0 ? quantity * price : Math.floor(quantity * price * 100) / 100 );
          totalPrice = totalPrice % 1 === 0 ? totalPrice + finalPrise :  Math.floor((totalPrice + quantity * price) * 100) / 100;
-         
-
+        
          return(
           <div className='item-cloth'key={i} value={id} data-test-id='cart-card'>
             <div className='item-img'>
@@ -72,7 +71,12 @@ const Cart = () => {
 
        return (
          <>
-          <div className='items-header'>Item in Cart</div>
+          <div className='cart-items-header'>
+            <div className='items-header active'> Item in Cart</div>
+            <div className='items-header'>{`/ \u00A0 Delivery Info \u00A0 /`}</div>
+            <div className='items-header'>Payment </div>
+           
+          </div>
             <div className='render-items'>{res}</div>
 
            <div className='cart-footer'>

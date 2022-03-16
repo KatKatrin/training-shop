@@ -15,17 +15,8 @@
   max-width: 60%;
   height: 98vh;
   position: absolute;
-  right: -388px;
+  right: 2px;
   background-color: white;
-  animation: move 0.5s ease ;
-  animation-fill-mode: both;
-  
-    
-  @keyframes move {
-    100% {
-      right: 0px;
-    }
-  }
 
   .cart-header{
     line-height: 48px;
@@ -58,14 +49,32 @@
   max-width: 98vw;
   height: 100vh;
 
-  .items-header{
+  .cart-items-header{
     padding: 16px 24px;
     font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width: 600px) {
+      font-size: 12px;
+    }
+
+    @media screen and (max-width: 500px) {
+      font-size: 9px;
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+
+    .items-header.active{
+      color: #121212;
+    }
+    .items-header{
+      color: #E6E6E6;
+    }
   }
 
   .render-items{
     margin-left: 24px;
-   // margin-right: 24px;
     height: 50vh;
     overflow:auto;
     
@@ -109,6 +118,10 @@
     bottom: 70px;
     max-width: 388px;
     width: 90%;
+
+    @media screen and (max-width: 440px) {
+      margin-left: 5px;
+    }
     
     .total-price{
       display: flex;
@@ -157,7 +170,11 @@
     margin-bottom: 10px;
      position: absolute;
      bottom: 130px;
-     left: 24px
+     left: 24px;
+
+     @media screen and (max-width: 440px) {
+      left: 10px
+    }
   }
 }
 
@@ -196,25 +213,27 @@
     }
    
     .item-counter{
-      width: 82px;
+      width: 85px;
       height: 30px;
       background-color: #F8F8F8;
       margin-bottom: 12px;
 
-      @media screen and (max-width: 450px) {
-        width: 60px;
+      @media screen and (max-width: 460px) {
+        width: 50px;
       }
       
       span{
-        
+                      
         button {
           border: none;
           background-color: #F8F8F8;
           width: 35px;
           height: 30px;
+          
 
-          @media screen and (max-width: 450px) {
-            width: 25px;
+          @media screen and (max-width: 460px) {
+            width: 20px;
+            padding: 0%;
           }
         }
       }
@@ -224,8 +243,9 @@
       font-weight: 700;
       font-size: 14px;
 
-      @media screen and (max-width: 500px) {
-        font-size: 10px;
+      @media screen and (max-width: 530px) {
+        font-size: 9px;
+        
       }
     }
   }
