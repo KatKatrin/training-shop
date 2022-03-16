@@ -1,12 +1,11 @@
 import { useState } from "react";
 import CardItem from '../components/card-item/CardItem';
 import serverData from '../components/main-blocks/serverData/serverData';
-
-import './banner.scss';
-
 import Banner from "../components/banner/Banner";
 import FilterBlock from "../components/filter/FilterBlock";
 import {getAllFilters} from '../components/filter/FilterBlock'
+
+//import './banner.scss';
 
 function MenPage ({category}) {
 

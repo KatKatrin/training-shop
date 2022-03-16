@@ -1,10 +1,12 @@
-import './banner.scss';
+import './cardPage.scss';
 
 import serverData from '../components/main-blocks/serverData/serverData'
 import Banner from "../components/banner/Banner";
 import Rating from "../components/rating/Rating";
 
-import addCard from '../components/card-item/img/addCard.png';
+//import addCard from '../components/card-item/img/addCard.png';
+import heart from '../components/card-item/img/heart.png';
+import compare from '../components/card-item/img/compare.png';
 import paySystem from '../components/card-item/img/paySystem.png';
 
 import sizeGuide from '../components/card-item/img/sizeGuide.png';
@@ -22,25 +24,54 @@ import ProductSlider from '../components/product-slider/ProductSlider';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SliderRelated from '../components/product-slider/SliderRelated';
+//import Cart from '../components/cart/Cart';
+
+import { useDispatch } from 'react-redux';
+import {addOrder, deleteOrder} from '../actions';
+import { useSelector } from 'react-redux';
 
 
 
 function CardPage () {
 
   const {category, id} =  useParams();
-
   const {name, price, material, sizes, reviews, rating, images} = serverData[category].filter(item => item.id === id)[0];
+  
 
-  console.log(name)
+  const dispatch = useDispatch();
+  const {order} = useSelector(state => state);
 
   const [size, setSize] = useState(sizes[0]);
-  const [color, setColor] = useState(images[0].color)
+  const [color, setColor] = useState(images[0].color);
+  const [image, setImage] = useState(`https://training.cleverland.by/shop${images[0].url}`);
+  const [ buttonRemove, setButtonRemove] = useState(false)
+
+  
 
   useEffect(() => {
     setSize(sizes[0]);
-    setColor(images[0].color)
+    setColor(images[0].color);
+    setImage(`https://training.cleverland.by/shop${images[0].url}`)
 
   }, [sizes, images])
+
+  useEffect(() => {
+    setButtonRemove(false)
+  }, [size, color])
+
+
+  const onAddOrder = () => {
+    
+    setButtonRemove(!buttonRemove);
+
+    dispatch(addOrder(id, name, size, color, price, image))
+
+    if(buttonRemove) {
+      setButtonRemove(!buttonRemove);
+      dispatch(deleteOrder(id, size, color))
+    }
+  }
+
    
   const availableSize = sizes.map((item,i) => {
     const changeActivSize = () => (setSize(item));
@@ -51,6 +82,7 @@ function CardPage () {
     )
   })
 
+  
   const allReviews = reviews.map((item,i) => {
     const {name, text, rating, id} = item;
 
@@ -71,14 +103,18 @@ function CardPage () {
     )
   });
 
+
   const getSmallImg = (images) => {
     let colorArr = []
 
    return( images.map((image,i) => {
 
       if (!colorArr.includes(image.color)){
-        colorArr = [...colorArr, image.color]
-        const changeColor = () => (setColor( image.color));
+        colorArr = [...colorArr, image.color];
+        const changeColor = () => {
+              setColor( image.color);
+              setImage(`https://training.cleverland.by/shop${images[i].url}`)
+        };
 
         const clazz = image.color === color ? 'active' : null;
         
@@ -163,7 +199,21 @@ function CardPage () {
 
           <div className='information__price'>
             <div className='price'> { price.toString().includes('.') ? (`$ ${price}`) : (`$ ${price}.00`)}</div>
-            <div><img src={addCard} alt="add card" /></div>
+
+            <div className='cart-button-wraper'>
+               <button className='cart-button' onClick={onAddOrder} data-test-id='add-cart-button'>
+                 {(!buttonRemove || !order.length) ? 'ADD TO CART' : 'REMOVE TO CARD'}
+                </button>
+            </div>
+
+            <div>
+              <span>
+                <img src={heart} alt="heart" />
+              </span>
+              <span>
+                <img src={compare} alt="compare" />
+              </span>
+            </div>
           </div>
 
           <div className='information__servise'>

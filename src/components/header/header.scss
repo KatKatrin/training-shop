@@ -6,6 +6,7 @@
   position: relative; 
   width: $width; 
   max-width: $maxwidth;
+  height: 100%;
 }
 
 .top-bar {
@@ -200,14 +201,46 @@
     }
     
     .menu__icon {
-      flex: 1 1 auto;
+      //flex: 1 1 auto;
       margin: 0 12px;
-      
+      padding-top: 3px;
 
       .burger-menu, .close-mark{
         width: 20px;
         height: 20px;
       }
+    }
+
+    .menu__icon.mail {
+      margin-right: 0;
+      width: 32px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      img{
+        width: 18px;
+        height: 19px;
+        
+      }
+    }
+
+    //black-round
+
+    .black-round {
+      width: 16px;
+      height: 15px;
+      background-color: black;
+      border-radius: 50%;
+      position: absolute;
+      top: -2px;
+      right: 3px;
+      color: white;
+      font-weight: 700;
+      font-size: 9px;
+      text-align: center;
+      padding: 0 2px 3px 2px;
     }
 
     // toggle burger-menu
@@ -297,3 +330,5 @@
       }
     }
 }
+
+
