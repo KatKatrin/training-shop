@@ -7,14 +7,8 @@ import Footer from "./components/footer/Footer";
 import MainPage from "./pages/MainPage";
 import WomenPage from "./pages/WomenPage";
 import Cart from "./components/cart/Cart";
-import { useDispatch } from "react-redux";
-import { toggleCart } from "./actions";
-import { useSelector } from "react-redux";
-
 
 function App() {
-
- 
 
   return (  
     <div className='app' data-test-id="app" >

@@ -1,8 +1,5 @@
 import './header.scss';
 import { ToogleBurgerMenu } from './ToggleBurgerMenu';
-import {Link} from 'react-router-dom';
-import { useState } from 'react';
-import cn from 'classnames';
 
 import phoneImg from './img/group.png';
 import locationImg from './img/location-marker 2.png';
