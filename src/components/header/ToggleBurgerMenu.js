@@ -11,11 +11,11 @@ import cn from 'classnames';
 import { useDispatch } from 'react-redux';
 import { toggleCart } from '../../actions';
 import { useSelector } from 'react-redux';
-import Spinner from '../spinner/Spinner';
+
 
 export function ToogleBurgerMenu () {
 
-  const {order, isLoading} = useSelector(state => state);
+  const {order} = useSelector(state => state);
   const dispatch = useDispatch();
   
   const [burgerMenu, setBurgerMenu] = useState(false);
