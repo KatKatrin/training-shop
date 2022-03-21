@@ -3,7 +3,6 @@ import './cardPage.scss';
 import Banner from "../components/banner/Banner";
 import Rating from "../components/rating/Rating";
 
-//import addCard from '../components/card-item/img/addCard.png';
 import heart from '../components/card-item/img/heart.png';
 import compare from '../components/card-item/img/compare.png';
 import paySystem from '../components/card-item/img/paySystem.png';
@@ -21,24 +20,44 @@ import arrowUp from '../constant/arrows/arrowUp.png';
 import arrowDown from '../constant/arrows/arrowDown.png';
 import ProductSlider from '../components/product-slider/ProductSlider';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState} from 'react';
 import SliderRelated from '../components/product-slider/SliderRelated';
-//import Cart from '../components/cart/Cart';
 
 import { useDispatch } from 'react-redux';
 import {addOrder, deleteOrder} from '../actions';
 import { useSelector } from 'react-redux';
 
+import IDService from '../services/IDService';
+import Spinner from '../components/spinner/Spinner';
 
 
-function CardPage () {
+
+function CardPageFetched () {
 
   const {category, id} =  useParams();
-  const {products} = useSelector(state => state);
-
-  const {name, price, material, sizes, reviews, rating, images} = products[category].filter(item => item.id === id)[0];
+  const {isSelectedProduct, isLoadedbyID, isLoading} = useSelector(state => state);
   
+  IDService(id);
+ 
+  console.log(isSelectedProduct)
 
+  
+  return(
+        <>
+          {isLoading ? <Spinner></Spinner> :
+          isLoadedbyID ?
+          <RenderCardPage isSelectedProduct={isSelectedProduct} category={category}></RenderCardPage> 
+          : null}
+        </>)
+  
+}
+
+export default CardPageFetched;
+
+
+function RenderCardPage ({isSelectedProduct, category}) {
+
+  const {name, price, material, sizes, reviews, rating, images, id} = isSelectedProduct;
   const dispatch = useDispatch();
   const {order} = useSelector(state => state);
 
@@ -320,5 +339,3 @@ function CardPage () {
 
   )
 }
-
-export default CardPage;

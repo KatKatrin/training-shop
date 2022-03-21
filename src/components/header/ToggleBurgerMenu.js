@@ -11,10 +11,11 @@ import cn from 'classnames';
 import { useDispatch } from 'react-redux';
 import { toggleCart } from '../../actions';
 import { useSelector } from 'react-redux';
+import Spinner from '../spinner/Spinner';
 
 export function ToogleBurgerMenu () {
 
-  const {order} = useSelector(state => state)
+  const {order, isLoading} = useSelector(state => state);
   const dispatch = useDispatch();
   
   const [burgerMenu, setBurgerMenu] = useState(false);
@@ -43,9 +44,7 @@ export function ToogleBurgerMenu () {
     document.body.style.overflow = "hidden";
   }
 
-  
-
- 
+   
   return(
     <>
       
@@ -63,6 +62,7 @@ export function ToogleBurgerMenu () {
                  onClick={(e) => onCloseNavMenu(e)} data-test-id="burger-menu">
                 <NavigationMenuHeader></NavigationMenuHeader>
             </div>
+
               
       <div className='menu__icons'>
 

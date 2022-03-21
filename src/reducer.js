@@ -1,9 +1,51 @@
 
-//const initialState = {value: 0, id: 0};
-const initialState = {order:[], openCart:false}
+
+const initialState = {
+  order:[],
+  openCart:false,
+  
+  products: {
+    men: [],
+    women: [],
+  },
+
+  isLoading: false,
+  isError: false, 
+  isLoaded: false,
+  isLoadedbyID: false,
+
+  isSelectedProduct:{}
+  
+}
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
+    case 'FETCHED_PRODUCTS':
+      return{
+        ...state,
+        products: action.payload,
+        isLoading: false,
+        isError: false,
+        isLoaded: true
+      };
+      case 'LOADING_PRODUCTS':
+      return{
+        ...state,
+        isLoading: true
+      };
+      case 'ERROR_LOADING_PRODUCTS':
+      return{
+        ...state,
+        isError: true,
+        isLoading: false,
+      };
+      case 'SELECTED_PRODUCT':
+        return{
+          ...state,
+          isLoadedbyID: true,
+          isLoading: false,
+          isSelectedProduct: action.payload
+        };
     case 'TOGGLE_CART':
       return {
         ...state,

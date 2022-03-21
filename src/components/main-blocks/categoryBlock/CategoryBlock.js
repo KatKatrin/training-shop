@@ -29,10 +29,10 @@ const CategoryBlock = ({category, items, filter}) => {
 
   return (
     <section className="content-type catalog" data-test-id={`clothes-${category}`}>
-    <ul className="clothes__list grid">
-        {result}
-    </ul>
-  </section>
+      <ul className="clothes__list grid">
+          {result}
+      </ul>
+    </section>
   )
 }
 

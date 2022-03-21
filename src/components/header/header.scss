@@ -270,8 +270,9 @@
     max-width: $maxwidth;
     height: 2px;
     background-color: #F8F8F8;
-
   }
+
+
 }
 
 // toggle menu
@@ -330,5 +331,19 @@
       }
     }
 }
+
+.loading-error{
+  width: 100%;
+  height: 25px;
+  background-color: #f0d1c7e3;
+  position: absolute;
+  top: 110px;
+  text-align: center;
+  font-weight: 600;
+  padding-top: 5px;
+  border-top: pink 2px solid;
+}
+
+
 
 

@@ -6,27 +6,30 @@ import car from "./img/car.png";
 import support from "./img/support.png"
 import returnImg from "./img/return.png"
 
-
 import SliderMainPage from '../slider/Slider';
+import { useSelector } from 'react-redux';
+import Spinner from '../spinner/Spinner';
+
 
 
 
 function MainBlock () {
+  const {isLoading} = useSelector(state => state);
+
+  const spinner = isLoading ? <Spinner/> : null;
+  
 
   return(
     <>
     <div className="main-box main-content__block">
 
+      {spinner}
 
             <div className="main-content__block__item banner" >
 
               <div className='main-title-banner' data-test-id="main-slider">
-
                 <SliderMainPage ></SliderMainPage>
-
               </div> 
-
-              
 
             </div>
 

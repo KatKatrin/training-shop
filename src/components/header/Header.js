@@ -6,10 +6,11 @@ import locationImg from './img/location-marker 2.png';
 import timeImg from './img/clock.png';
 import icons from './img/Group 1.png';
 
+import { useSelector } from "react-redux";
 
 function Header () {
 
- 
+ const {isError} = useSelector(state => state);
 
   return(
     <>
@@ -38,6 +39,14 @@ function Header () {
       </div>
           
               <ToogleBurgerMenu></ToogleBurgerMenu>
+              
+      { isError ?
+       <div className='loading-error' data-test-id="error">
+          Ошибка получения данных
+        </div> :
+        null
+      }
+      
 
     </>
   )

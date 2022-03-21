@@ -1,17 +1,19 @@
 import './filterBlock.scss';
-import serverData from '../main-blocks/serverData/serverData';
+//import serverData from '../main-blocks/serverData/serverData';
 
 import filterImg from './img/adjustments.png';
 import arrowDown from './img/arrow-down.png';
 import viewGrid from './img/view-grid.png';
 import viewList from './img/view-list.png';
+import { useSelector } from 'react-redux';
 
 
 
 const FilterBlock = ({category, onChangeInput, onHandleChangeStatusFilter, statusFilter}) => {
 
+  const {products} = useSelector(state => state);
 
-  const allFilters = getAllFilters(serverData, category);
+  const allFilters = getAllFilters(products, category);
 
   function renderMoneyFilter () {
     const allPrices = [[0,50], [51, 100], [101, 200], [201, 500]];

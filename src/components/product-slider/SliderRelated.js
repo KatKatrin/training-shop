@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import serverDats from '../main-blocks/serverData/serverData';
+
 import Rating from "../rating/Rating";
 import './sliderRelated.scss';
 
@@ -15,6 +15,7 @@ import "swiper/css/pagination";
 import "swiper/css/bundle";
 
 import { Grid, Navigation } from "swiper";
+import { useSelector } from 'react-redux';
 
 export default function SliderRelated({category}) {
 
@@ -56,8 +57,10 @@ export default function SliderRelated({category}) {
 
 
 function RelatedGrid (category) {
+
+    const {products} = useSelector(state => state);
   
-    const itemsSwiper = serverDats[category].map((item, i) => {
+    const itemsSwiper = products[category].map((item, i) => {
 
       const {name, images, price, rating, id, discount} = item;
       return (
@@ -69,7 +72,7 @@ function RelatedGrid (category) {
             </Link>             
                     <div className="cloth__item-name">{name}</div>
                     <div className="cloth__information">
-                      <div className="cloth__item-price">{`$ ${price}.00`}</div>
+                      <div className="cloth__item-price">{`$ ${price}`}</div>
                      <Rating ratingNumber={rating}/>
                     </div>
             </li>

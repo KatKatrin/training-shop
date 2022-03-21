@@ -52,7 +52,7 @@ const Cart = () => {
                     <button onClick={()=> dispatch(decrOrder(id, size, color))} data-test-id='minus-product'>
                       -</button>
                   </span>
-                  <span>{quantity}</span>
+                  <div>{quantity}</div>
                   <span>
                     <button onClick={()=> dispatch(incOrder(id, size, color))} data-test-id='plus-product'>
                       +</button>

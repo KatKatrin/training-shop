@@ -12,7 +12,7 @@
 
 .products-cart{
   width: 388px;
-  max-width: 60%;
+  max-width: 65%;
   height: 98vh;
   position: absolute;
   right: 2px;
@@ -217,6 +217,8 @@
       height: 30px;
       background-color: #F8F8F8;
       margin-bottom: 12px;
+      display: flex;
+      align-items: center;
 
       @media screen and (max-width: 460px) {
         width: 50px;
