@@ -8,13 +8,18 @@ import Cart from "./components/cart/Cart";
 import ProductService from "./services/ProductService";
 import WomenPage from "./pages/WomenPage";
 import MenPage from "./pages/MenPage";
-import CardPageFetched from "./pages/CardPageFetched";
+import { useSelector } from "react-redux";
+import CardPage from './pages/CardPage';
+import Spinner from "./components/spinner/Spinner";
+
 
 
 
 function App() {
   
   ProductService();
+
+  const {isLoaded, isLoading} = useSelector(state => state);
 
     
   return (  
@@ -38,11 +43,10 @@ function App() {
 
               <Route exact path='/men' element={ <MenPage  category={'men'} /> }/>
 
-              {/* <Route exact path='/:category/:id' element={isLoaded ? <CardPage/> : null}/> */}
+               <Route exact path='/:category/:id' element={isLoading ? <Spinner></Spinner> 
+                                                          : isLoaded ? <CardPage/> : null}/> 
 
-              <Route exact path='/:category/:id' element={ <CardPageFetched/> }/>
-
-     
+   
             </Routes>   
         </main>
 

@@ -12,10 +12,7 @@ const initialState = {
   isLoading: false,
   isError: false, 
   isLoaded: false,
-  isLoadedbyID: false,
-
-  isSelectedProduct:{}
-  
+    
 }
 
 const reducer = (state = initialState, action) => {
@@ -39,13 +36,7 @@ const reducer = (state = initialState, action) => {
         isError: true,
         isLoading: false,
       };
-      case 'SELECTED_PRODUCT':
-        return{
-          ...state,
-          isLoadedbyID: true,
-          isLoading: false,
-          isSelectedProduct: action.payload
-        };
+      
     case 'TOGGLE_CART':
       return {
         ...state,

@@ -2,16 +2,11 @@
 export const fetchedProducts = (products) => 
       ({type: 'FETCHED_PRODUCTS', payload: products});
 
-export const selectedProduct = (product) => 
-      ({type: 'SELECTED_PRODUCT', payload: product});
-
 export const loadingProducts = () => 
       ({type: 'LOADING_PRODUCTS'});
 
 export const errorLoadingProducts = () => 
       ({type: 'ERROR_LOADING_PRODUCTS'});
-
-      
 
 export const toggleCart = (open) => 
       ({type: 'TOGGLE_CART', payload: open});

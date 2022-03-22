@@ -40,7 +40,7 @@ function Banner ({bannerName, product}) {
         </div>
       </div>
 
-      <div className="banner-block-name">{bannerName}</div>
+      <div className="banner-block-name">{product}</div>
 
     </>
   )
