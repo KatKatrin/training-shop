@@ -15,6 +15,7 @@ import Loader from "../main-blocks/subscribeBlock/Loader";
 
 function Footer (){
   const [submitForm, setSubmitForm] = useState(false);
+  const [errorMail, setErrorMail] = useState(false)
   const {subscriptionData, isLoadingSubscriptionData, subscriptionResult} = useSelector(state => state);
   const dispatch = useDispatch();
   
@@ -23,14 +24,17 @@ function Footer (){
     setSubmitForm(false);
     dispatch(getSubscribtionData())
     if(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(e.target.value)){
+      setSubmitForm(true);
+      setErrorMail(false)
       const userData = {mail: e.target.value}
       dispatch(getSubscribtionData(userData));
+    } else {
+      setErrorMail("Неверный mail")
     }
   }
 
   const onSubmitMail = (e) => {
     e.preventDefault();
-    setSubmitForm(true);
     dispatch(loadingSubscribtionData())
     e.target.reset()
     dispatch(getSubscribtionData())
@@ -47,17 +51,18 @@ function Footer (){
         <div className="input__block">
           <input id="email" name="user_email" required type="email" data-test-id='footer-mail-field'
                  placeholder="Enter your email"
-                 onChange={(e) => onChangeEmail(e)} />
+                 onInput={(e) => onChangeEmail(e)} />
           <button className="button_submit" type="submit" value={"Join Us"}
                   data-test-id='footer-subscribe-mail-button'
-                  disabled={!Object.keys(subscriptionData).length || isLoadingSubscriptionData} >
-                    {isLoadingSubscriptionData ? <Loader/> : null }
+                  disabled={!Object.keys(subscriptionData).length || isLoadingSubscriptionData || !submitForm} >
+                    {isLoadingSubscriptionData && submitForm ? <Loader/> : null }
             Join Us
           </button>
         </div>
       </form>
         <div>
           {(!subscriptionResult || !submitForm)  ? '' :  subscriptionResult}
+          {errorMail? <span style={{color:'red'}}>{errorMail}</span>  : null}
         </div>
         <div className='icons'>
               <img src={icons} alt="icons" />

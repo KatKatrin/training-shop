@@ -5,7 +5,7 @@ import { setSubscribtion} from '../../actions';
 
 export const postData  = (subscriptionData) => {
  
-  return( fetch('https://training.cleverland.by/shop/email', {
+  return( fetch('https://training.cleverland.by/shop/emai', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8'
@@ -22,14 +22,18 @@ export function* getSubscribtionWorker () {
 
   if(isLoadingSubscriptionData){
 
-    const data = yield call(() => postData(subscriptionData));
+    try{
+      const data = yield call(() => postData(subscriptionData));
 
-    if (data.ok){
-      yield put(setSubscribtion('Данные отправлены успешно'))
-    } else {
+      if (data.ok){
+        yield put(setSubscribtion('Данные отправлены успешно'))
+      } else {
+        yield put(setSubscribtion('Что-то пошло не так...'))
+      }
+    } catch (err){
       yield put(setSubscribtion('Что-то пошло не так...'))
     }
-     
+    
   }
  
 }

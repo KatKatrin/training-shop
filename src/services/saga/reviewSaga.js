@@ -18,17 +18,23 @@ export const postData  = (review) => {
 
 export function* sendReviwWorker () {
 
-  const {review} = yield select();
+  try{
+    
+    const {review} = yield select();
 
     const data = yield call(() => postData(review));
-    console.log(data)
 
+        
     if (data.ok){
       yield put(setReview('Данные отправлены успешно'))
     } else {
       yield put(setReview('Что-то пошло не так...'))
     }
- 
+
+  } catch (err){
+    yield put(setReview('Что-то пошло не так...'))
+  }
+
 }
 
 

@@ -39,8 +39,7 @@ function CardPage () {
   const {products, openFormReview} = useSelector(state => state);
   
   const {name, price, material, sizes, reviews, rating, images} = products[category].filter(item => item.id === id)[0];
-  console.log(rating);
-
+  
   const dispatch = useDispatch();
   const {order} = useSelector(state => state);
 
@@ -356,7 +355,7 @@ function WriteReview ({idProduct}){
   const [ratingNumber, setRatingNumber] = useState(1);
   
   const {reviewResult, isLoadingReview} = useSelector(state => state);
-  console.log(isLoadingReview)
+  console.log(reviewResult)
   const dispatch = useDispatch();
 
   const onChangeRating = (rating) => {
@@ -391,10 +390,17 @@ function WriteReview ({idProduct}){
               
               onSubmit = {(values, {resetForm}) => 
                             { values.rating = ratingNumber;
-                              dispatch(getReviewData(values));
-                              dispatch(loadingReviewData());
-                              resetForm({});
-                              setRatingNumber(1); }
+                               dispatch(loadingReviewData());
+
+                               dispatch(getReviewData(values));
+                                                            
+                              if(reviewResult){
+                                console.log('test')
+                                resetForm({});
+                                setRatingNumber(1);
+                              }
+                              
+                               }
                             }> 
              
 {({ isValid, touched}) =>(

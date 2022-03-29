@@ -46,12 +46,13 @@ const reducer = (state = initialState, action) => {
         };
       case 'SET_REVIEW':
         if(action.payload === 'Данные отправлены успешно'){
+          document.body.style.overflow = "visible";
           return{
             ...state,
           isLoadingReview: false,
           reviewResult: action.payload,
           isLoadedReview: true,
-          //openFormReview: false
+          openFormReview: false
           }
         } else{
         return{
