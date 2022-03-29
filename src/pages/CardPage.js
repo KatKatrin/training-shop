@@ -296,9 +296,8 @@ function CardPage () {
                 <span className='quantity__review'> {`${quantityRewiews} Reviews`}</span>
               </div>
 
-              <button className='write__review' 
-                      data-test-id='review-button'
-                      onClick={()=> {window.scrollTo(0,0);
+              <button className='write__review' data-test-id='review-button'
+                                    onClick={()=> {window.scrollTo(0,0);
                                     dispatch(ontoggleReviewForm()); 
                                     document.body.style.overflow = "hidden";}}>
                 <img src={message} alt="message" />

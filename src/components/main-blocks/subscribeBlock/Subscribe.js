@@ -41,7 +41,7 @@ function Subscribe () {
             onSubmit={(e) => onSubmitMail(e)}>
         <p>Special Offer</p>
         <h2>Subscribe <br /> And <span style={{color:'#E91E63'}} >Get 10% Off</span> </h2>
-        <input className="form-control form_input" name="user_email" data-test-id='main-subscribe-mail-field'
+        <input className="form-control form_input" name="user_email" data-test-id="main-subscribe-mail-field"
                 required type="email" 
                 placeholder="Enter your email" onInput={(e) => onChangeEmail(e)} />
         <div>
