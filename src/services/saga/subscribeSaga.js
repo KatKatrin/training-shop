@@ -5,7 +5,7 @@ import { setSubscribtion} from '../../actions';
 
 export const postData  = (subscriptionData) => {
  
-  return( fetch('https://training.cleverland.by/shop/emai', {
+  return( fetch('https://training.cleverland.by/shop/email', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8'

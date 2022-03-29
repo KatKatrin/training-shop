@@ -296,7 +296,7 @@ function CardPage () {
                 <span className='quantity__review'> {`${quantityRewiews} Reviews`}</span>
               </div>
 
-              <button className='write__review' data-test-id='review-button'
+              <button className='write__review' data-test-id="review-button"
                                     onClick={()=> {window.scrollTo(0,0);
                                     dispatch(ontoggleReviewForm()); 
                                     document.body.style.overflow = "hidden";}}>
@@ -375,7 +375,7 @@ function WriteReview ({idProduct}){
 
   return(
     
-      <div className='review-form__container' data-test-id='review-modal'>
+      <div className='review-form__container' data-test-id="review-modal">
       <h1>Write a review</h1>
       <RatingReview ratingNumber={ratingNumber} onChangeRating={onChangeRating}></RatingReview>
       <Formik
@@ -405,18 +405,18 @@ function WriteReview ({idProduct}){
 {({ isValid, touched}) =>(
    <Form className='review-form' action="#" > 
        
-   <Field className='review_info' type="text"
-          id='name' name='name' placeholder='Name'
-          data-test-id='review-name-field'></Field>
+   <Field data-test-id="review-name-field" className='review_info' type="text" 
+          id='name' name='name' placeholder='Name'>
+    </Field>
    <ErrorMessage className='error' name='name' component='div'></ErrorMessage>
    
-   <Field className='review_info review' type="text"
+   <Field  data-test-id="review-text-field" className='review_info review' type="text"
           id='text' name='text' placeholder='Reviw' 
-          data-test-id='review-text-field' as='textarea'></Field>
+           as='textarea'></Field>
    <ErrorMessage className='error' name='text' component='div'></ErrorMessage>
 
-  <button className='submit-review' type='submit' disabled={!touched.name || !isValid }
-          data-test-id='review-submit-button'>
+  <button data-test-id="review-submit-button" className='submit-review' type='submit' 
+          disabled={!touched.name || !isValid }>
     {isLoadingReview? <Loader></Loader>: null} 
     Send
   </button>

@@ -49,11 +49,10 @@ function Footer (){
       <label htmlFor="email">BE IN TOUCH WITH US:</label>
       <form action="#" className="footer__form" onSubmit={(e) => onSubmitMail(e)}>
         <div className="input__block">
-          <input id="email" name="user_email" required type="email" data-test-id='footer-mail-field'
+          <input id="email" name="user_email" required type="email" data-test-id="footer-mail-field"
                  placeholder="Enter your email"
                  onInput={(e) => onChangeEmail(e)} />
-          <button className="button_submit" type="submit" value={"Join Us"}
-                  data-test-id='footer-subscribe-mail-button'
+          <button className="button_submit" type="submit" data-test-id="footer-subscribe-mail-button"
                   disabled={!Object.keys(subscriptionData).length || isLoadingSubscriptionData || !submitForm} >
                     {isLoadingSubscriptionData && submitForm ? <Loader/> : null }
             Join Us

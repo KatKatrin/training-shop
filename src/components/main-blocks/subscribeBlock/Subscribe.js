@@ -49,8 +49,7 @@ function Subscribe () {
           {errorMail? <span style={{color:'red'}}>{errorMail}</span>  : null}
         </div>
 
-        <button className="button_submit" type="submit" 
-                data-test-id='main-subscribe-mail-button'
+        <button className="button_submit" type="submit" data-test-id="main-subscribe-mail-button"
                 disabled={!Object.keys(subscriptionData).length || isLoadingSubscriptionData || !submitForm} >
           <div style={{display:'flex', justifyContent: 'space-around'}}> 
             {isLoadingSubscriptionData && submitForm ? <Loader/> : null } SUBSCRIBE 
