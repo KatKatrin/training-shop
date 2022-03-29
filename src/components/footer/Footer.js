@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./footer.scss";
 
+import { useState } from "react";
 import icons from "../header/img/Group 1.png";
 import phoneImg from '../header/img/group.png';
 import locationImg from './img/location-marker.png';
@@ -10,13 +11,16 @@ import envelope from './img/mail.png';
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getSubscribtionData, loadingSubscribtionData } from "../../actions";
+import Loader from "../main-blocks/subscribeBlock/Loader";
 
 function Footer (){
-  const {subscriptionData, isLoadingSubscriptionData} = useSelector(state => state);
+  const [submitForm, setSubmitForm] = useState(false);
+  const {subscriptionData, isLoadingSubscriptionData, subscriptionResult} = useSelector(state => state);
   const dispatch = useDispatch();
   
 
   const onChangeEmail = (e) => {
+    setSubmitForm(false);
     dispatch(getSubscribtionData())
     if(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(e.target.value)){
       const userData = {mail: e.target.value}
@@ -26,6 +30,7 @@ function Footer (){
 
   const onSubmitMail = (e) => {
     e.preventDefault();
+    setSubmitForm(true);
     dispatch(loadingSubscribtionData())
     e.target.reset()
     dispatch(getSubscribtionData())
@@ -37,19 +42,23 @@ function Footer (){
       
     <div className="footer__join-form">
      
-        <label htmlFor="email">BE IN TOUCH WITH US:</label>
-        <form action="#" className="footer__form" onSubmit={(e) => onSubmitMail(e)}>
+      <label htmlFor="email">BE IN TOUCH WITH US:</label>
+      <form action="#" className="footer__form" onSubmit={(e) => onSubmitMail(e)}>
         <div className="input__block">
-          <input id="email" name="user_email" required type="email" placeholder="Enter your email"
-                data-test-id='footer-mail-field'
-                onChange={(e) => onChangeEmail(e)} />
+          <input id="email" name="user_email" required type="email" data-test-id='footer-mail-field'
+                 placeholder="Enter your email"
+                 onChange={(e) => onChangeEmail(e)} />
           <button className="button_submit" type="submit" value={"Join Us"}
                   data-test-id='footer-subscribe-mail-button'
                   disabled={!Object.keys(subscriptionData).length || isLoadingSubscriptionData} >
+                    {isLoadingSubscriptionData ? <Loader/> : null }
             Join Us
           </button>
         </div>
       </form>
+        <div>
+          {(!subscriptionResult || !submitForm)  ? '' :  subscriptionResult}
+        </div>
         <div className='icons'>
               <img src={icons} alt="icons" />
         </div>

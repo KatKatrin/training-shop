@@ -391,12 +391,11 @@ function WriteReview ({idProduct}){
               
               onSubmit = {(values, {resetForm}) => 
                             { values.rating = ratingNumber;
-                              console.log(values); 
                               dispatch(getReviewData(values));
                               dispatch(loadingReviewData());
-                              resetForm({})}
-                            }
-        > 
+                              resetForm({});
+                              setRatingNumber(1); }
+                            }> 
              
 {({ isValid, touched}) =>(
    <Form className='review-form' action="#" > 

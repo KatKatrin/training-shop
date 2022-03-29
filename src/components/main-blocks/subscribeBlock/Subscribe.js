@@ -3,12 +3,17 @@ import { useSelector } from 'react-redux';
 import { getSubscribtionData, loadingSubscribtionData } from '../../../actions';
 import Loader from './Loader';
 import './subscribe.scss';
+import { useState } from 'react';
 
 function Subscribe () {
+  const [submitForm, setSubmitForm] = useState(false);
+   
   const {subscriptionData, isLoadingSubscriptionData, subscriptionResult} = useSelector(state => state);
+  
   const dispatch = useDispatch();
  
   const onChangeEmail = (e) => {
+    setSubmitForm(false);
     dispatch(getSubscribtionData())
     if(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(e.target.value)){
       const userData = {mail: e.target.value}
@@ -18,6 +23,7 @@ function Subscribe () {
 
   const onSubmitMail = (e) => {
     e.preventDefault();
+    setSubmitForm(true);
     dispatch(loadingSubscribtionData())
     e.target.reset()
     dispatch(getSubscribtionData())
@@ -30,14 +36,14 @@ function Subscribe () {
             onSubmit={(e) => onSubmitMail(e)}>
         <p>Special Offer</p>
         <h2>Subscribe <br /> And <span style={{color:'#E91E63'}} >Get 10% Off</span> </h2>
-        <input className="form-control form_input" name="user_email" required type="email" 
-          data-test-id='main-subscribe-mail-field'
-          placeholder="Enter your email" onChange={(e) => onChangeEmail(e)} />
+        <input className="form-control form_input" name="user_email" data-test-id='main-subscribe-mail-field'
+                required type="email" 
+                placeholder="Enter your email" onChange={(e) => onChangeEmail(e)} />
         <div>
-          {!subscriptionResult  ? '' :  subscriptionResult}
+          {(!subscriptionResult || !submitForm)  ? '' :  subscriptionResult}
         </div>
 
-        <button className="button_submit" type="submit" value={"SUBSCRIBE"} 
+        <button className="button_submit" type="submit" 
                 data-test-id='main-subscribe-mail-button'
                 disabled={!Object.keys(subscriptionData).length || isLoadingSubscriptionData} >
           <div style={{display:'flex', justifyContent: 'space-around'}}> {isLoadingSubscriptionData ? <Loader/> : null } SUBSCRIBE </div>

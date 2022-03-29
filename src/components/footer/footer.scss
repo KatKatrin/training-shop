@@ -18,7 +18,7 @@
 
     @media screen  and(max-width:850px){
     flex-direction: column;
-     height: 118px;
+     height: 140px;
      
       .input__block {
        flex-direction: column;
@@ -28,6 +28,7 @@
        .button_submit {
         height: 20px;
         margin: 5px;
+        
       }
      }
     }
@@ -57,6 +58,9 @@
           border: 1px solid white;
           background-color: black;
           color: #FFFFFF;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
           
         }
   

@@ -20,8 +20,7 @@ function App() {
  
   const {isLoaded, isLoading, isLoadedReview} = useSelector(state => state);
 
-  console.log(isLoadedReview)
-      
+        
   return (  
     <div className='app' data-test-id="app" >
       <Router>
