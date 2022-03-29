@@ -4,17 +4,18 @@ import { useEffect } from "react";
 import {fetchedProducts, loadingProducts, errorLoadingProducts} from "../actions";
 
 const ProductService = () => {
-  const {products} = useSelector(state => state);
+  const {products, isLoadedReview} = useSelector(state => state);
     const dispatch = useDispatch();
     const {request} = useHttp();
+    
+  useEffect(() => {
 
-    useEffect(() => {
-      dispatch(loadingProducts());
-      request("https://training.cleverland.by/shop/products")
-          .then(data => dispatch(fetchedProducts(data)))
-          .catch(() => dispatch(errorLoadingProducts()))
-      // eslint-disable-next-line
-  }, []);
+    dispatch(loadingProducts());
+    request("https://training.cleverland.by/shop/products")
+        .then(data => dispatch(fetchedProducts(data)))
+        .catch(() => dispatch(errorLoadingProducts()))
+    // eslint-disable-next-line
+}, [isLoadedReview]);
 
   return products;
 }

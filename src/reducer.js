@@ -1,8 +1,8 @@
 
-
 const initialState = {
   order:[],
   openCart:false,
+  openFormReview: false,
   
   products: {
     men: [],
@@ -12,11 +12,77 @@ const initialState = {
   isLoading: false,
   isError: false, 
   isLoaded: false,
-    
+
+  subscriptionData: {},
+  isLoadingSubscriptionData: false,
+  subscriptionResult: false,
+
+  review: {},
+  isLoadingReview: false,
+  isLoadedReview: false,
+  reviewResult: false
 }
+
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
+
+    case 'TOGGLE_FORM':
+      return{
+        ...state,
+        reviewResult: false,
+        openFormReview: !state.openFormReview
+      };
+      case 'GET_REVIEW_DATA':
+        return{
+          ...state,
+          review: action.payload,
+          reviewResult: false,
+        };
+      case 'LOADING_REVIEW_DATA':
+        return{
+          ...state,
+          isLoadingReview: true
+        };
+      case 'SET_REVIEW':
+        if(action.payload === 'Данные отправлены успешно'){
+          return{
+            ...state,
+          isLoadingReview: false,
+          reviewResult: action.payload,
+          isLoadedReview: true,
+          //openFormReview: false
+          }
+        } else{
+        return{
+          ...state,
+          isLoadingReview: false,
+          reviewResult: action.payload
+        }
+      };
+  
+
+    case 'GET_SUBSCRIBTION_DATA':
+      return{
+        ...state,
+        subscriptionData: action.payload,
+        subscriptionResult: false,
+        
+      };
+
+    case 'LOADING_SUBSCRIBTION_DATA':
+      return{
+        ...state,
+        isLoadingSubscriptionData: true
+      };
+
+    case 'SET_SUBSCRIBTION':
+      return{
+        ...state,
+        subscriptionResult: action.payload,
+        isLoadingSubscriptionData: false
+      };
+
     case 'FETCHED_PRODUCTS':
       return{
         ...state,
@@ -36,7 +102,6 @@ const reducer = (state = initialState, action) => {
         isError: true,
         isLoading: false,
       };
-      
     case 'TOGGLE_CART':
       return {
         ...state,

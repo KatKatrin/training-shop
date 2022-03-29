@@ -1,7 +1,6 @@
 import {HashRouter as Router, Route, Routes} from "react-router-dom";
 import Header from "./components/header/Header";
 
-//import CardPage from "./pages/CardPage";
 import Footer from "./components/footer/Footer";
 import MainPage from "./pages/MainPage";
 import Cart from "./components/cart/Cart";
@@ -16,12 +15,13 @@ import Spinner from "./components/spinner/Spinner";
 
 
 function App() {
-  
-  ProductService();
-
-  const {isLoaded, isLoading} = useSelector(state => state);
-
     
+  ProductService();
+ 
+  const {isLoaded, isLoading, isLoadedReview} = useSelector(state => state);
+
+  console.log(isLoadedReview)
+      
   return (  
     <div className='app' data-test-id="app" >
       <Router>
@@ -43,8 +43,9 @@ function App() {
 
               <Route exact path='/men' element={ <MenPage  category={'men'} /> }/>
 
-               <Route exact path='/:category/:id' element={isLoading ? <Spinner></Spinner> 
-                                                          : isLoaded ? <CardPage/> : null}/> 
+               <Route exact path='/:category/:id' element={isLoading && !isLoadedReview ? 
+                                                  <Spinner></Spinner> : 
+                                                  isLoaded  ? <CardPage/> : null }/> 
 
    
             </Routes>   

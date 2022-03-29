@@ -22,3 +22,34 @@ export const incOrder = (id, size, color) =>
 
 export const decrOrder = (id, size, color) => 
       ({type: 'DECR_ORDER', payload: {id,  size, color}});
+
+export const ontoggleReviewForm = () => 
+      ({type: 'TOGGLE_FORM'});
+
+
+//saga
+
+export const getSubscribtionData = (mail = {}) => 
+      ({type: 'GET_SUBSCRIBTION_DATA', payload: mail});
+
+export const loadingSubscribtionData = () => 
+      ({type: 'LOADING_SUBSCRIBTION_DATA'});
+
+export const setSubscribtion = (response) => 
+      ({type: 'SET_SUBSCRIBTION', payload: response});
+
+
+
+export const getReviewData = (review = {}) => 
+      ({type: 'GET_REVIEW_DATA', payload: review});
+
+export const loadingReviewData = () => 
+      ({type: 'LOADING_REVIEW_DATA'});
+
+export const setReview = (response) => 
+      ({type: 'SET_REVIEW', payload: response});
+
+
+
+
+

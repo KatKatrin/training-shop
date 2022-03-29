@@ -7,18 +7,49 @@ import locationImg from './img/location-marker.png';
 import timeImg from './img/clock.png';
 import paySystems from './img/paySystems.png';
 import envelope from './img/mail.png';
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { getSubscribtionData, loadingSubscribtionData } from "../../actions";
 
 function Footer (){
+  const {subscriptionData, isLoadingSubscriptionData} = useSelector(state => state);
+  const dispatch = useDispatch();
+  
+
+  const onChangeEmail = (e) => {
+    dispatch(getSubscribtionData())
+    if(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(e.target.value)){
+      const userData = {mail: e.target.value}
+      dispatch(getSubscribtionData(userData));
+    }
+  }
+
+  const onSubmitMail = (e) => {
+    e.preventDefault();
+    dispatch(loadingSubscribtionData())
+    e.target.reset()
+    dispatch(getSubscribtionData())
+  }
+  
 
   return(
     <footer className="footer">
       
     <div className="footer__join-form">
-      <label htmlFor="email">BE IN TOUCH WITH US:</label>
-      <div className="input__block">
-        <input id="email" name="user_email" required type="email" placeholder="Enter your email"/>
-        <input className="button_submit" type="submit" value={"Join Us"} />
-      </div>
+     
+        <label htmlFor="email">BE IN TOUCH WITH US:</label>
+        <form action="#" className="footer__form" onSubmit={(e) => onSubmitMail(e)}>
+        <div className="input__block">
+          <input id="email" name="user_email" required type="email" placeholder="Enter your email"
+                data-test-id='footer-mail-field'
+                onChange={(e) => onChangeEmail(e)} />
+          <button className="button_submit" type="submit" value={"Join Us"}
+                  data-test-id='footer-subscribe-mail-button'
+                  disabled={!Object.keys(subscriptionData).length || isLoadingSubscriptionData} >
+            Join Us
+          </button>
+        </div>
+      </form>
         <div className='icons'>
               <img src={icons} alt="icons" />
         </div>

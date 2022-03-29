@@ -3,12 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import reducer from './reducer';
+import createSagaMiddleware from 'redux-saga';
+
+import rootWatcher from './services/saga/rootWatcher';
 
 
+const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(reducer, 
+                          compose(applyMiddleware(sagaMiddleware),
+                          window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+                        );
+
+sagaMiddleware.run(rootWatcher);
 
 
 ReactDOM.render(

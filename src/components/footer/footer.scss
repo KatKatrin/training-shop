@@ -20,45 +20,54 @@
     flex-direction: column;
      height: 118px;
      
-
-     >.input__block {
+      .input__block {
        flex-direction: column;
        justify-content: center;
        align-items: center;
 
-      > .button_submit {
+       .button_submit {
         height: 20px;
         margin: 5px;
       }
      }
     }
 
-    >.input__block {
-      display: flex;
+    .footer__form {
       width: 90%;
       max-width: 12px + 400px +108px;
-      
-      > #email {
-        margin-left: 3px;
-        width: 90%;
-        max-width: 400px;
-        height: 32px;
-        opacity: 0.2;
-        margin-right: 12px;
-        border: none;
+
+      .input__block {
+        display: flex;
+               
+        > #email {
+          margin-left: 3px;
+          width: 90%;
+          max-width: 400px;
+          height: 32px;
+          opacity: 0.2;
+          margin-right: 12px;
+          border: none;
+        }
+  
+         .button_submit{
+          margin-right: 3px;
+          width: 100%;
+          max-width: 108px;
+          height: 32px;
+          border: 1px solid white;
+          background-color: black;
+          color: #FFFFFF;
+          
+        }
+  
+        .button_submit:disabled{
+          opacity: 0.3;
+        }
       }
 
-      > .button_submit{
-        margin-right: 3px;
-        width: 100%;
-        max-width: 108px;
-        height: 32px;
-        border: 1px solid white;
-        background-color: black;
-        color: #FFFFFF;
-        opacity: 0.9;
-      }
     }
+
+  
   }
 
   &__navigations{

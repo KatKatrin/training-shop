@@ -25,4 +25,29 @@ export const useHttp = () => {
     
 
     return {request}
+};
+
+export const useHttpPost = () => {
+   
+    const request = useCallback(async (url, body, method = 'POST',  headers = {'Content-Type': 'application/json;charset=utf-8'}) => {
+
+        const bodyJSON = JSON.stringify(body)
+        
+        try {
+            const response = await fetch(url, {method, body: bodyJSON, headers});
+                        
+            if (!response.ok) {
+                throw new Error(`Could not fetch ${url}, status: ${response.status}`);
+            }
+
+            return response;
+        } catch(e) {
+            
+            throw e;
+        }
+    }, []);
+
+    
+
+    return {request}
 }

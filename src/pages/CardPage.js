@@ -3,7 +3,6 @@ import './cardPage.scss';
 import Banner from "../components/banner/Banner";
 import Rating from "../components/rating/Rating";
 
-//import addCard from '../components/card-item/img/addCard.png';
 import heart from '../components/card-item/img/heart.png';
 import compare from '../components/card-item/img/compare.png';
 import paySystem from '../components/card-item/img/paySystem.png';
@@ -23,21 +22,24 @@ import ProductSlider from '../components/product-slider/ProductSlider';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SliderRelated from '../components/product-slider/SliderRelated';
-//import Cart from '../components/cart/Cart';
 
 import { useDispatch } from 'react-redux';
-import {addOrder, deleteOrder} from '../actions';
+import {addOrder, deleteOrder, getReviewData, loadingReviewData, ontoggleReviewForm} from '../actions';
 import { useSelector } from 'react-redux';
+
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import RatingReview from '../components/reviews/RatingReview';
+import Loader from '../components/main-blocks/subscribeBlock/Loader';
 
 
 
 function CardPage () {
 
   const {category, id} =  useParams();
-  const {products} = useSelector(state => state);
-
-  const {name, price, material, sizes, reviews, rating, images} = products[category].filter(item => item.id === id)[0];
+  const {products, openFormReview} = useSelector(state => state);
   
+  const {name, price, material, sizes, reviews, rating, images} = products[category].filter(item => item.id === id)[0];
+  console.log(rating);
 
   const dispatch = useDispatch();
   const {order} = useSelector(state => state);
@@ -48,7 +50,6 @@ function CardPage () {
   const [ buttonRemove, setButtonRemove] = useState(false)
 
   
-
   useEffect(() => {
     setSize(sizes[0]);
     setColor(images[0].color);
@@ -133,12 +134,23 @@ function CardPage () {
    )
   }
 
+  const onToggleReviewForm = (e) => {
+    
+    if(e.target.className ==='review-form__wrapper'){
+      dispatch(ontoggleReviewForm());
+      document.body.style.overflow = "visible";
+    }
+  
+  }
+
+
   const quantityRewiews = reviews.length;
 
   return(
     <div className="main-content" data-test-id={`product-page-${category}`}>
       <Banner bannerName={category} product={name}></Banner>
 
+    
       <div className='under-banner-info'>
         <div className='info-block stars-rating'>
           <Rating ratingNumber={rating}/>
@@ -150,6 +162,14 @@ function CardPage () {
         </div>
       </div>
 
+      {openFormReview ?
+         <div className='review-form__wrapper' onClick={(e) => onToggleReviewForm(e) }>
+         <WriteReview idProduct={id}></WriteReview> 
+        </div> :
+        null
+      }
+
+     
 
       <div className="card-content">
 
@@ -197,7 +217,7 @@ function CardPage () {
             </div>
 
           </div>
-
+          
           <div className='information__price'>
             <div className='price'> { price.toString().includes('.') ? (`$ ${price}`) : (`$ ${price}.00`)}</div>
 
@@ -266,6 +286,7 @@ function CardPage () {
           
           </div>
 
+       
           <div className='information__review'>
             <h4>REVIEWS</h4>
 
@@ -276,10 +297,16 @@ function CardPage () {
                 <span className='quantity__review'> {`${quantityRewiews} Reviews`}</span>
               </div>
 
-              <div className='write__review'>
+              <button className='write__review' 
+                      data-test-id='review-button'
+                      onClick={()=> {window.scrollTo(0,0);
+                                    dispatch(ontoggleReviewForm()); 
+                                    document.body.style.overflow = "hidden";}}>
                 <img src={message} alt="message" />
                 <span> Write a review</span>
-              </div>
+              </button>
+
+              
 
             </div>
 
@@ -322,3 +349,84 @@ function CardPage () {
 }
 
 export default CardPage;
+
+
+
+function WriteReview ({idProduct}){
+  const [ratingNumber, setRatingNumber] = useState(1);
+  
+  const {reviewResult, isLoadingReview} = useSelector(state => state);
+  console.log(isLoadingReview)
+  const dispatch = useDispatch();
+
+  const onChangeRating = (rating) => {
+    setRatingNumber(rating)
+  }
+
+  const validate = (values) => {
+    const errors = {};
+  
+    if(!values.name){
+      errors.name = 'Введите имя'
+    }
+    if(!values.text){
+      errors.text = 'Напишите отзыв'
+    }
+    return errors
+  }
+
+  return(
+    
+      <div className='review-form__container' data-test-id='review-modal'>
+      <h1>Write a review</h1>
+      <RatingReview ratingNumber={ratingNumber} onChangeRating={onChangeRating}></RatingReview>
+      <Formik
+            initialValues={{
+              id:idProduct,
+              name:'',
+              text:'',
+              }}
+              
+              validate={validate}
+              
+              onSubmit = {(values, {resetForm}) => 
+                            { values.rating = ratingNumber;
+                              console.log(values); 
+                              dispatch(getReviewData(values));
+                              dispatch(loadingReviewData());
+                              resetForm({})}
+                            }
+        > 
+             
+{({ isValid, touched}) =>(
+   <Form className='review-form' action="#" > 
+       
+   <Field className='review_info' type="text"
+          id='name' name='name' placeholder='Name'
+          data-test-id='review-name-field'></Field>
+   <ErrorMessage className='error' name='name' component='div'></ErrorMessage>
+   
+   <Field className='review_info review' type="text"
+          id='text' name='text' placeholder='Reviw' 
+          data-test-id='review-text-field' as='textarea'></Field>
+   <ErrorMessage className='error' name='text' component='div'></ErrorMessage>
+
+  <button className='submit-review' type='submit' disabled={!touched.name || !isValid }
+          data-test-id='review-submit-button'>
+    {isLoadingReview? <Loader></Loader>: null} 
+    Send
+  </button>
+  {reviewResult ? <div>{reviewResult}</div> : null}
+
+</Form>
+)}
+         
+
+      </Formik>
+
+      
+      
+      </div>
+  
+  )
+}
