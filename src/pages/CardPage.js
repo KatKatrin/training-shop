@@ -163,7 +163,7 @@ function CardPage () {
 
       {openFormReview ?
          <div className='review-form__wrapper' onClick={(e) => onToggleReviewForm(e) }>
-         <WriteReview idProduct={id}></WriteReview> 
+         <WriteReview idProduct={id} data-test-id="review-modal"></WriteReview> 
         </div> :
         null
       }
@@ -375,7 +375,7 @@ function WriteReview ({idProduct}){
 
   return(
     
-      <div className='review-form__container' data-test-id="review-modal">
+      <div className='review-form__container'>
       <h1>Write a review</h1>
       <RatingReview ratingNumber={ratingNumber} onChangeRating={onChangeRating}></RatingReview>
       <Formik
