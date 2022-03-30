@@ -10,6 +10,7 @@ import MenPage from "./pages/MenPage";
 import { useSelector } from "react-redux";
 import CardPage from './pages/CardPage';
 import Spinner from "./components/spinner/Spinner";
+import { useEffect } from "react";
 
 
 
@@ -19,6 +20,10 @@ function App() {
   ProductService();
  
   const {isLoaded, isLoading, isLoadedReview} = useSelector(state => state);
+
+  useEffect(()=> {
+
+  }, [])
 
         
   return (  

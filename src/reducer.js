@@ -32,7 +32,8 @@ const reducer = (state = initialState, action) => {
       return{
         ...state,
         reviewResult: false,
-        openFormReview: !state.openFormReview
+        openFormReview: !state.openFormReview,
+       
       };
       case 'GET_REVIEW_DATA':
         return{
@@ -93,7 +94,8 @@ const reducer = (state = initialState, action) => {
         products: action.payload,
         isLoading: false,
         isError: false,
-        isLoaded: true
+        isLoaded: true,
+        
       };
       case 'LOADING_PRODUCTS':
       return{
@@ -109,7 +111,8 @@ const reducer = (state = initialState, action) => {
     case 'TOGGLE_CART':
       return {
         ...state,
-       openCart: action.payload
+       openCart: action.payload,
+       
       };
     case 'INC_ORDER':
       const newStateQuantity =  state.order.map((item, i) => {

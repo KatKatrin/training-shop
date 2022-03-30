@@ -4,14 +4,13 @@ import MainBlock from "../components/main-blocks/MainBlocks";
 
 import CategoryBlock from "../components/main-blocks/categoryBlock/CategoryBlock"
 
-//import serverData from '../components/main-blocks/serverData/serverData';
-
 import ActualInfo from "../components/main-blocks/actualInformation/ActualInfo";
 import Blog from "../components/main-blocks/blog/Blog";
 import Subscribe from "../components/main-blocks/subscribeBlock/Subscribe";
 import ProductsFilter from "../components/products-header/ProductsHeader";
 import { useSelector } from "react-redux";
 import Spinner from "../components/spinner/Spinner";
+
 
 function MainPage () {
 
@@ -73,6 +72,8 @@ function MainPage () {
       <ActualInfo></ActualInfo>
       <Subscribe></Subscribe>
       <Blog></Blog>
+
+     
 
     </>
   )

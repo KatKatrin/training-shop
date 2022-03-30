@@ -12,14 +12,22 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getSubscribtionData, loadingSubscribtionData } from "../../actions";
 import Loader from "../main-blocks/subscribeBlock/Loader";
+import { useEffect } from "react";
 
 
 function Footer (){
   const [submitForm, setSubmitForm] = useState(false);
   const [submitedForm, setSubmitedForm] = useState(false);
   const [errorMail, setErrorMail] = useState(false);
+  
   const {isLoadingSubscriptionData, subscriptionResult, usedFieldSubscr} = useSelector(state => state);
+  const [serverResult, setServerResult] = useState(subscriptionResult);
   const dispatch = useDispatch();
+
+
+  useEffect(()=>{
+    setServerResult(subscriptionResult)
+  }, [subscriptionResult])
 
 
   const onChangeEmail = (e) => {
@@ -33,6 +41,10 @@ function Footer (){
       dispatch(getSubscribtionData(userData));
     } else {
       setErrorMail("Неверный mail")
+      setTimeout(() => {
+        setErrorMail(false);
+        e.target.value = null;
+      }, 4000);
     }
   }
 
@@ -43,6 +55,10 @@ function Footer (){
       setSubmitedForm(true)
       dispatch(loadingSubscribtionData(2))
       e.target.reset()
+
+      setTimeout(() => {
+        setServerResult('')
+      }, 4000);
     }
      
   }
@@ -67,7 +83,7 @@ function Footer (){
         </div>
       </form>
         <div>
-          { !(usedFieldSubscr === 2)  ? '' :  subscriptionResult}
+          { !(usedFieldSubscr === 2)  ? '' :  serverResult}
           {errorMail? <span style={{color:'red'}}>{errorMail}</span>  : null}
         </div>
         <div className='icons'>

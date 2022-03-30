@@ -4,11 +4,13 @@ import { useSelector } from 'react-redux';
 import Spinner from '../components/spinner/Spinner';
 
 
+
 function WomenPage () {
 
   const {isLoading, isLoaded} = useSelector(state => state);
 
   return(
+    <>
     <div className="main-content" data-test-id={`products-page-${'women'}`}>
     <Banner bannerName={'women'}></Banner>
     {isLoading? <Spinner/> : isLoaded ?
@@ -17,6 +19,8 @@ function WomenPage () {
     }
     
     </div>
+   
+    </>
   )
 };
 

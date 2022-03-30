@@ -4,6 +4,7 @@ import { getSubscribtionData, loadingSubscribtionData } from '../../../actions';
 import Loader from './Loader';
 import './subscribe.scss';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 function Subscribe () {
@@ -12,10 +13,13 @@ function Subscribe () {
   const [errorMail, setErrorMail] = useState(false);
    
   const {isLoadingSubscriptionData, subscriptionResult, usedFieldSubscr} = useSelector(state => state);
-  console.log(usedFieldSubscr)
+  const [serverResult, setServerResult] = useState(subscriptionResult);
   
   const dispatch = useDispatch();
   
+  useEffect(()=>{
+    setServerResult(subscriptionResult)
+  }, [subscriptionResult])
    
   const onChangeEmail = (e) => {
     setSubmitForm(false);
@@ -27,7 +31,11 @@ function Subscribe () {
       const userData = {mail:{mail: e.target.value},usedField:1 }
       dispatch(getSubscribtionData(userData));
     } else {
-      setErrorMail("Неверный mail")
+      setErrorMail("Неверный mail");
+      setTimeout(() => {
+        setErrorMail(false);
+        e.target.value = null;
+      }, 4000);
     }
   }
 
@@ -36,8 +44,13 @@ function Subscribe () {
     if(submitForm){
 
       setSubmitedForm(true);
-      dispatch(loadingSubscribtionData(1))
+      dispatch(loadingSubscribtionData(1));
       e.target.reset()
+      setSubmitForm(false)
+
+      setTimeout(() => {
+        setServerResult('')
+      }, 5000);
     }
     
   }
@@ -53,7 +66,7 @@ function Subscribe () {
                 name="user_email" required type="email" placeholder="Enter your email" 
                 onInput={(e) => onChangeEmail(e)} />
         <div>
-          {  !(usedFieldSubscr === 1) ? '' :  subscriptionResult}
+          {  !(usedFieldSubscr === 1)  ? '' :  serverResult}
           {errorMail? <span style={{color:'red'}}>{errorMail}</span>  : null}
         </div>
 

@@ -33,6 +33,7 @@ import Loader from '../components/main-blocks/subscribeBlock/Loader';
 
 
 
+
 function CardPage () {
 
   const {category, id} =  useParams();
@@ -146,6 +147,7 @@ function CardPage () {
   const quantityRewiews = reviews.length;
 
   return(
+    <>
     <div className="main-content" data-test-id={`product-page-${category}`}>
       <Banner bannerName={category} product={name}></Banner>
 
@@ -342,7 +344,9 @@ function CardPage () {
       </div>
 
     </div>
-
+    
+    </>
+   
   )
 }
 
