@@ -16,6 +16,7 @@ const initialState = {
   subscriptionData: {},
   isLoadingSubscriptionData: false,
   subscriptionResult: false,
+  usedFieldSubscr:0,
 
   review: {},
   isLoadingReview: false,
@@ -66,7 +67,8 @@ const reducer = (state = initialState, action) => {
     case 'GET_SUBSCRIBTION_DATA':
       return{
         ...state,
-        subscriptionData: action.payload,
+        subscriptionData: action.payload.mail,
+        usedFieldSubscr: action.payload.usedField,
         subscriptionResult: false,
         
       };
@@ -74,7 +76,8 @@ const reducer = (state = initialState, action) => {
     case 'LOADING_SUBSCRIBTION_DATA':
       return{
         ...state,
-        isLoadingSubscriptionData: true
+        isLoadingSubscriptionData: true,
+        usedFieldSubscr: action.payload
       };
 
     case 'SET_SUBSCRIBTION':

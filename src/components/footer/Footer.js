@@ -13,22 +13,23 @@ import { useSelector } from "react-redux";
 import { getSubscribtionData, loadingSubscribtionData } from "../../actions";
 import Loader from "../main-blocks/subscribeBlock/Loader";
 
+
 function Footer (){
   const [submitForm, setSubmitForm] = useState(false);
   const [submitedForm, setSubmitedForm] = useState(false);
   const [errorMail, setErrorMail] = useState(false);
-  const {isLoadingSubscriptionData, subscriptionResult} = useSelector(state => state);
+  const {isLoadingSubscriptionData, subscriptionResult, usedFieldSubscr} = useSelector(state => state);
   const dispatch = useDispatch();
-  
+
 
   const onChangeEmail = (e) => {
     setSubmitForm(false);
     setSubmitedForm(false)
-    dispatch(getSubscribtionData())
+   
     if(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(e.target.value)){
       setSubmitForm(true);
       setErrorMail(false)
-      const userData = {mail: e.target.value}
+      const userData = {mail:{mail: e.target.value},usedField:2 }
       dispatch(getSubscribtionData(userData));
     } else {
       setErrorMail("Неверный mail")
@@ -37,12 +38,12 @@ function Footer (){
 
   const onSubmitMail = (e) => {
     e.preventDefault();
+    
    if(submitForm){
-     setSubmitedForm(true)
-      dispatch(loadingSubscribtionData())
-      dispatch(getSubscribtionData())
+      setSubmitedForm(true)
+      dispatch(loadingSubscribtionData(2))
       e.target.reset()
-   }
+    }
      
   }
   
@@ -59,14 +60,14 @@ function Footer (){
                  placeholder="Enter your email"
                  onInput={(e) => onChangeEmail(e)} />
           <button className="button_submit" type="submit" data-test-id="footer-subscribe-mail-button"
-                  disabled={ (submitedForm && isLoadingSubscriptionData) || (!submitForm && !submitedForm)} >
-                    {isLoadingSubscriptionData && submitedForm ? <Loader/> : null }
+                  disabled={ ((usedFieldSubscr === 2) && isLoadingSubscriptionData) || (!submitForm )} >
+                    {isLoadingSubscriptionData && submitedForm && (usedFieldSubscr === 2) ? <Loader/> : null }
             Join Us
           </button>
         </div>
       </form>
         <div>
-          {( !submitedForm)  ? '' :  subscriptionResult}
+          { !(usedFieldSubscr === 2)  ? '' :  subscriptionResult}
           {errorMail? <span style={{color:'red'}}>{errorMail}</span>  : null}
         </div>
         <div className='icons'>

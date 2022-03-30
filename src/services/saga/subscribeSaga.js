@@ -20,6 +20,8 @@ export function* getSubscribtionWorker () {
 
   const {isLoadingSubscriptionData, subscriptionData} = yield select();
 
+  console.log(subscriptionData)
+
   if(isLoadingSubscriptionData){
 
     try{

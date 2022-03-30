@@ -29,11 +29,11 @@ export const ontoggleReviewForm = () =>
 
 //saga
 
-export const getSubscribtionData = (mail = {}) => 
-      ({type: 'GET_SUBSCRIBTION_DATA', payload: mail});
+export const getSubscribtionData = (data = {}) => 
+      ({type: 'GET_SUBSCRIBTION_DATA', payload: data});
 
-export const loadingSubscribtionData = () => 
-      ({type: 'LOADING_SUBSCRIBTION_DATA'});
+export const loadingSubscribtionData = (field) => 
+      ({type: 'LOADING_SUBSCRIBTION_DATA', payload: field});
 
 export const setSubscribtion = (response) => 
       ({type: 'SET_SUBSCRIBTION', payload: response});

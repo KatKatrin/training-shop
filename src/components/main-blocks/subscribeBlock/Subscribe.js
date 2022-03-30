@@ -5,37 +5,41 @@ import Loader from './Loader';
 import './subscribe.scss';
 import { useState } from 'react';
 
+
 function Subscribe () {
   const [submitForm, setSubmitForm] = useState(false);
   const [submitedForm, setSubmitedForm] = useState(false);
   const [errorMail, setErrorMail] = useState(false);
    
-  const {isLoadingSubscriptionData, subscriptionResult} = useSelector(state => state);
+  const {isLoadingSubscriptionData, subscriptionResult, usedFieldSubscr} = useSelector(state => state);
+  console.log(usedFieldSubscr)
   
   const dispatch = useDispatch();
- 
+  
+   
   const onChangeEmail = (e) => {
     setSubmitForm(false);
     setSubmitForm(false);
-    dispatch(getSubscribtionData())
+   
     if(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(e.target.value)){
       setSubmitForm(true);
       setErrorMail(false)
-      const userData = {mail: e.target.value}
+      const userData = {mail:{mail: e.target.value},usedField:1 }
       dispatch(getSubscribtionData(userData));
     } else {
       setErrorMail("Неверный mail")
     }
   }
 
-  const onSubmitMail =  (e) => {
+  const onSubmitMail = async (e) => {
     e.preventDefault();
     if(submitForm){
-      setSubmitedForm(true)
-      dispatch(loadingSubscribtionData())
-      dispatch(getSubscribtionData())
+
+      setSubmitedForm(true);
+      dispatch(loadingSubscribtionData(1))
       e.target.reset()
     }
+    
   }
 
   return(
@@ -45,16 +49,18 @@ function Subscribe () {
             onSubmit={(e) => onSubmitMail(e)}>
         <p>Special Offer</p>
         <h2>Subscribe <br /> And <span style={{color:'#E91E63'}} >Get 10% Off</span> </h2>
-        <input data-test-id={"main-subscribe-mail-field"} className="form-control form_input" name="user_email" required type="email" placeholder="Enter your email" onInput={(e) => onChangeEmail(e)} />
+        <input data-test-id={"main-subscribe-mail-field"} className="form-control form_input" 
+                name="user_email" required type="email" placeholder="Enter your email" 
+                onInput={(e) => onChangeEmail(e)} />
         <div>
-          {( !submitedForm)  ? '' :  subscriptionResult}
+          {  !(usedFieldSubscr === 1) ? '' :  subscriptionResult}
           {errorMail? <span style={{color:'red'}}>{errorMail}</span>  : null}
         </div>
 
         <button className="button_submit" type="submit" data-test-id="main-subscribe-mail-button"
-                disabled={ (submitedForm && isLoadingSubscriptionData) ||  (!submitForm && !submitedForm)} >
+                disabled={ ((usedFieldSubscr === 1) && isLoadingSubscriptionData) ||  (!submitForm)} >
           <div style={{display:'flex', justifyContent: 'space-around'}}> 
-            {isLoadingSubscriptionData && submitedForm ? <Loader/> : null } SUBSCRIBE 
+            {isLoadingSubscriptionData && submitedForm &&  (usedFieldSubscr === 1)? <Loader/> : null } SUBSCRIBE 
           </div>
         </button>
         
