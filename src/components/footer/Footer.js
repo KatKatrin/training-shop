@@ -34,7 +34,7 @@ function Footer (){
     setSubmitForm(false);
     setSubmitedForm(false)
    
-    if(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(e.target.value)){
+    if(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(e.target.value)){
       setSubmitForm(true);
       setErrorMail(false)
       const userData = {mail:{mail: e.target.value},usedField:2 }
