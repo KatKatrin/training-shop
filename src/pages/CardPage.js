@@ -165,7 +165,7 @@ function CardPage () {
 
       {openFormReview ?
          <div className='review-form__wrapper' onClick={(e) => onToggleReviewForm(e) }>
-         <WriteReview idProduct={id} data-test-id="review-modal"></WriteReview> 
+         <WriteReview idProduct={id} ></WriteReview> 
         </div> :
         null
       }
@@ -303,7 +303,7 @@ function CardPage () {
                                     dispatch(ontoggleReviewForm()); 
                                     document.body.style.overflow = "hidden";}}>
                 <img src={message} alt="message" />
-                <span> Write a review</span>
+                 Write a review
               </button>
 
               
@@ -379,7 +379,7 @@ function WriteReview ({idProduct}){
 
   return(
     
-      <div className='review-form__container'>
+      <div className='review-form__container' data-test-id="review-modal">
       <h1>Write a review</h1>
       <RatingReview ratingNumber={ratingNumber} onChangeRating={onChangeRating}></RatingReview>
       <Formik
@@ -407,7 +407,7 @@ function WriteReview ({idProduct}){
                             }> 
              
 {({ isValid, touched}) =>(
-   <Form className='review-form' action="#" > 
+   <Form className='review-form' action="https://training.cleverland.by/shop/product/review" > 
        
    <Field data-test-id="review-name-field" className='review_info' type="text" 
           id='name' name='name' placeholder='Name'>

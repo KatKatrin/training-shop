@@ -58,7 +58,7 @@ function Subscribe () {
   return(
 
     <div className="main-box subscribe-block">
-      <form className="form main__form" action="#" 
+      <form className="form main__form" action="https://training.cleverland.by/shop/email" 
             onSubmit={(e) => onSubmitMail(e)}>
         <p>Special Offer</p>
         <h2>Subscribe <br /> And <span style={{color:'#E91E63'}} >Get 10% Off</span> </h2>

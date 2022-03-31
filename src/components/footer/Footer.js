@@ -70,7 +70,7 @@ function Footer (){
     <div className="footer__join-form">
      
       <label htmlFor="email">BE IN TOUCH WITH US:</label>
-      <form action="#" className="footer__form" onSubmit={(e) => onSubmitMail(e)}>
+      <form action="https://training.cleverland.by/shop/email" className="footer__form" onSubmit={(e) => onSubmitMail(e)}>
         <div className="input__block">
           <input id="email" name="user_email" required type="email" data-test-id="footer-mail-field"
                  placeholder="Enter your email"
