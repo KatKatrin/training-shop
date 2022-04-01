@@ -10,10 +10,6 @@ body {
   line-height: 22px;
   font-weight: 400;
   
-  @media screen and (min-width:361px) {
-    overflow-x: hidden;
-  }
- 
 }
 
 #root {
@@ -27,6 +23,10 @@ body {
   max-width: $maxwidth;
 
   position: relative;
+
+  @media screen and (min-width:280px) {
+    overflow-x: hidden;
+  }
   
 }
 
