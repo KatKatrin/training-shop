@@ -41,10 +41,7 @@ function Footer (){
       dispatch(getSubscribtionData(userData));
     } else {
       setErrorMail("Неверный mail")
-      setTimeout(() => {
-        setErrorMail(false);
-        e.target.value = null;
-      }, 4000);
+      
     }
   }
 
