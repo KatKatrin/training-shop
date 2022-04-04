@@ -10,8 +10,6 @@ import MenPage from "./pages/MenPage";
 import { useSelector } from "react-redux";
 import CardPage from './pages/CardPage';
 import Spinner from "./components/spinner/Spinner";
-import { useEffect } from "react";
-
 
 
 
@@ -21,23 +19,18 @@ function App() {
  
   const {isLoaded, isLoading, isLoadedReview} = useSelector(state => state);
 
-  useEffect(()=> {
-
-  }, [])
-
-        
+         
   return (  
     <div className='app' data-test-id="app" >
-      <Router>
+    <Router>
+
       <Cart></Cart>
       <header>
         <div className="header" data-test-id="header">
           <Header></Header>
         </div>
       </header>
-
-     
-
+  
           <main className="main-content">
             <Routes>
             
@@ -50,12 +43,11 @@ function App() {
                <Route exact path='/:category/:id' element={isLoading && !isLoadedReview ? 
                                                   <Spinner></Spinner> : 
                                                   isLoaded  ? <CardPage/> : null }/> 
-
    
             </Routes>   
         </main>
 
-        <Footer></Footer>
+      <Footer></Footer>
     
     </Router>
   </div>

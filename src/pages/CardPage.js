@@ -2,11 +2,9 @@ import './cardPage.scss';
 
 import Banner from "../components/banner/Banner";
 import Rating from "../components/rating/Rating";
-
 import heart from '../components/card-item/img/heart.png';
 import compare from '../components/card-item/img/compare.png';
 import paySystem from '../components/card-item/img/paySystem.png';
-
 import sizeGuide from '../components/card-item/img/sizeGuide.png';
 
 import car from '../components/card-item/img/truck.png';
@@ -24,13 +22,9 @@ import { useEffect, useState } from 'react';
 import SliderRelated from '../components/product-slider/SliderRelated';
 
 import { useDispatch } from 'react-redux';
-import {addOrder, deleteOrder, getReviewData, loadingReviewData, ontoggleReviewForm} from '../actions';
+import {addOrder, deleteOrder,ontoggleReviewForm} from '../actions';
 import { useSelector } from 'react-redux';
-
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import RatingReview from '../components/reviews/RatingReview';
-import Loader from '../components/main-blocks/subscribeBlock/Loader';
-
+import WriteReview from '../components/reviews/WriteReview';
 
 
 
@@ -150,7 +144,6 @@ function CardPage () {
     <>
     <div className="main-content" data-test-id={`product-page-${category}`}>
       <Banner bannerName={category} product={name}></Banner>
-
     
       <div className='under-banner-info'>
         <div className='info-block stars-rating'>
@@ -170,7 +163,6 @@ function CardPage () {
         null
       }
 
-     
 
       <div className="card-content">
 
@@ -306,8 +298,6 @@ function CardPage () {
                  Write a review
               </button>
 
-              
-
             </div>
 
             {allReviews}
@@ -340,7 +330,6 @@ function CardPage () {
 
         </ul>
       
-
       </div>
 
     </div>
@@ -354,87 +343,3 @@ export default CardPage;
 
 
 
-function WriteReview ({idProduct}){
-  const [ratingNumber, setRatingNumber] = useState(1);
-  
-  const {reviewResult, isLoadingReview} = useSelector(state => state);
-  console.log(reviewResult)
-  const dispatch = useDispatch();
-
-  const onChangeRating = (rating) => {
-    setRatingNumber(rating)
-  }
-
-  const validate = (values) => {
-    const errors = {};
-  
-    if(!values.name){
-      errors.name = 'Введите имя'
-    }
-    if(!values.text){
-      errors.text = 'Напишите отзыв'
-    }
-    return errors
-  }
-
-  return(
-    
-      <div className='review-form__container' data-test-id="review-modal">
-      <h1>Write a review</h1>
-      <RatingReview ratingNumber={ratingNumber} onChangeRating={onChangeRating}></RatingReview>
-      <Formik
-            initialValues={{
-              id:idProduct,
-              name:'',
-              text:'',
-              }}
-              
-              validate={validate}
-              
-              onSubmit = {(values, {resetForm}) => 
-                            { values.rating = ratingNumber;
-                               dispatch(loadingReviewData());
-
-                               dispatch(getReviewData(values));
-                                                            
-                              if(reviewResult){
-                                console.log('test')
-                                resetForm({});
-                                setRatingNumber(1);
-                              }
-                              
-                               }
-                            }> 
-             
-{({ isValid, touched}) =>(
-   <Form className='review-form' action="https://training.cleverland.by/shop/product/review" > 
-       
-   <Field data-test-id="review-name-field" className='review_info' type="text" 
-          id='name' name='name' placeholder='Name'>
-    </Field>
-   <ErrorMessage className='error' name='name' component='div'></ErrorMessage>
-   
-   <Field  data-test-id="review-text-field" className='review_info review' type="text"
-          id='text' name='text' placeholder='Reviw' 
-           as='textarea'></Field>
-   <ErrorMessage className='error' name='text' component='div'></ErrorMessage>
-
-  <button data-test-id="review-submit-button" className='submit-review' type='submit' 
-          disabled={!touched.name || !isValid }>
-    {isLoadingReview? <Loader></Loader>: null} 
-    Send
-  </button>
-  {reviewResult ? <div>{reviewResult}</div> : null}
-
-</Form>
-)}
-         
-
-      </Formik>
-
-      
-      
-      </div>
-  
-  )
-}
