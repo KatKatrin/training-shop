@@ -178,12 +178,12 @@ function Delivery ({totalPrise}) {
 
       <label htmlFor="phone" className='cart-input-name'>PHONE</label>
       <Field className={`field-input ${errors.phone && touched.phone && 'is-invalid'}`} type="tel" id="phone" name="phone" 
-              maxLength='15' placeholder=' +375 (_ _) _ _ _ _ _ _ _' onInput={(e) => onHandleInputPhone(e)} />
+              maxLength='15' placeholder='+375 (_ _) _ _ _ _ _ _ _' onInput={(e) => onHandleInputPhone(e)} />
       <ErrorMessage className='error' name='phone' component ='div'></ErrorMessage>    
 
       <label htmlFor="email" className='cart-input-name'>E-MAIL</label>
       <Field className={`field-input ${errors.email && touched.email && 'is-invalid'}`} id="email" 
-             name="email" type="email" placeholder=' e-mail' />
+             name="email" type="email" placeholder='e-mail' />
       <ErrorMessage className='error' name='email' component ='div'></ErrorMessage>
      
 
@@ -191,24 +191,24 @@ function Delivery ({totalPrise}) {
         (<div>
             <div className='cart-input-name'>ADDRESS</div>
             <Field className={`field-input ${errors.country && touched.country && 'is-invalid'}`} id="country" 
-                   name="country" placeholder=' Country'  />
+                   name="country" placeholder='Country'  />
             <ErrorMessage className='error' name='country' component ='div'></ErrorMessage>
 
-            <Field className={`field-input ${errors.city && touched.city && 'is-invalid'}`} id="city" name="city" placeholder=' City'  />
+            <Field className={`field-input ${errors.city && touched.city && 'is-invalid'}`} id="city" name="city" placeholder='City'  />
             <ErrorMessage className='error' name='city' component ='div'></ErrorMessage>
 
-            <Field className={`field-input ${errors.street && touched.street && 'is-invalid'}`} id="street" name="street" placeholder=' Street' />
+            <Field className={`field-input ${errors.street && touched.street && 'is-invalid'}`} id="street" name="street" placeholder='Street' />
             <ErrorMessage className='error' name='street' component ='div'></ErrorMessage>
 
             <div className='address-apartment-home'>
               <div>
                 <Field className={`field-input_half ${errors.house && touched.house && 'is-invalid'}`} id="house" 
-                       name="house"  placeholder=' House'  />
+                       name="house"  placeholder='House'  />
                 <ErrorMessage className='error' name='house' component ='div'></ErrorMessage>
               </div>
               
               <div>
-                <Field id="apartment" name="apartment"  placeholder=' Apartment' className="field-input_half"  />
+                <Field id="apartment" name="apartment"  placeholder='Apartment' className="field-input_half"  />
                 <ErrorMessage className='error' name='apartment' component ='div'></ErrorMessage>
               </div>
             </div>
@@ -220,7 +220,7 @@ function Delivery ({totalPrise}) {
         (<div>
           <div><label htmlFor="poctcode" className='cart-input-name'>POSTCODE</label></div>
           <Field className={`field-input ${errors.postcode && touched.postcode && 'is-invalid'}`} id="postcode" maxLength='6'
-                 name="postcode" placeholder=' BY______' />
+                 name="postcode" placeholder='BY______' />
           <ErrorMessage className='error' name='postcode' component ='div'></ErrorMessage>
         </div>) : 
         null 
@@ -239,7 +239,7 @@ function Delivery ({totalPrise}) {
           <ErrorMessage className='error' name='country' component ='div'></ErrorMessage>
 
           <Field className={`field-input ${errors.storeAddress && touched.storeAddress && 'is-invalid'}`} id="storeAddress" 
-                  name="storeAddress" placeholder=' Store address' list='cityListStore' disabled={Boolean(!values.country)}>        
+                  name="storeAddress" placeholder='Store address' list='cityListStore' disabled={Boolean(!values.country)}>        
           </Field>
           <Field as='datalist' id='cityListStore'>
                 {stores.length ?
