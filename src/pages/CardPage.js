@@ -134,9 +134,7 @@ function CardPage () {
       dispatch(ontoggleReviewForm());
       document.body.style.overflow = "visible";
     }
-  
   }
-
 
   const quantityRewiews = reviews.length;
 
