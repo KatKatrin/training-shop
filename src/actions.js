@@ -1,4 +1,3 @@
-
 export const fetchedProducts = (products) => 
       ({type: 'FETCHED_PRODUCTS', payload: products});
 
@@ -39,11 +38,11 @@ export const onOpenDelivery = () =>
 export const onOpenPayment = () => 
       ({type: 'CART_PAYMENT_OPEN'});
 
-export const fetchedCountry = (country) => 
-      ({type: 'FETCHED_COUNTRYS', payload: country});
+export const fetchedCountry = (countries) => 
+      ({type: 'FETCHED_COUNTRYS', payload: countries});
 
-export const fetchedStores = (stores) => 
-      ({type: 'FETCHED_STORES', payload: stores});
+// export const fetchedStores = (stores) => 
+//       ({type: 'FETCHED_STORES', payload: stores});
 
 export const setDeliveryData = ( deliveryData = {
                                           deliveryMethod:'pickup from post offices', 
@@ -59,46 +58,46 @@ export const setPaymentData = (paymentData = {
 
 // delivery INFO
 
-export const setDeliveryMethod = (method) => 
-      ({type: 'SET_DELIVERY_METHOD', payload: method});
+// export const setDeliveryMethod = (method) => 
+//       ({type: 'SET_DELIVERY_METHOD', payload: method});
 
-export const setPhoneNum = (phoneNum) => 
-      ({type: 'SET_PHONE_NUM', payload: phoneNum});
+// export const setPhoneNum = (phoneNum) => 
+//       ({type: 'SET_PHONE_NUM', payload: phoneNum});
 
-export const setMAIL = (mail) => 
-      ({type: 'SET_MAIL', payload: mail});
+// export const setMAIL = (mail) => 
+//       ({type: 'SET_MAIL', payload: mail});
 
-export const setCountry = (country) => 
-      ({type: 'SET_COUNTRY', payload: country});
+// export const setCountry = (country) => 
+//       ({type: 'SET_COUNTRY', payload: country});
 
-export const setCity = (city) => 
-      ({type: 'SET_CITY', payload: city});
+// export const setCity = (city) => 
+//       ({type: 'SET_CITY', payload: city});
 
-export const setStreet = (street) => 
-      ({type: 'SET_STREET', payload: street});
+// export const setStreet = (street) => 
+//       ({type: 'SET_STREET', payload: street});
 
-export const setHouse = (house) => 
-      ({type: 'SET_HOUSE', payload: house});
+// export const setHouse = (house) => 
+//       ({type: 'SET_HOUSE', payload: house});
 
-export const setApartment = (apartment) => 
-      ({type: 'SET_APARTMENT', payload: apartment});
+// export const setApartment = (apartment) => 
+//       ({type: 'SET_APARTMENT', payload: apartment});
 
-export const setPostCode = (postcode) => 
-      ({type: 'SET_POSTCODE', payload: postcode});
+// export const setPostCode = (postcode) => 
+//       ({type: 'SET_POSTCODE', payload: postcode});
 
-export const setStoreAddress = (storeAd) => 
-      ({type: 'SET_STORE_ADDRESS', payload: storeAd});
+// export const setStoreAddress = (storeAd) => 
+//       ({type: 'SET_STORE_ADDRESS', payload: storeAd});
 
 // payment      
 
-export const setCardNum = (cardNum) => 
-      ({type: 'SET_CARD_NUM', payload: cardNum});
+// export const setCardNum = (cardNum) => 
+//       ({type: 'SET_CARD_NUM', payload: cardNum});
 
-export const setCardDate = (date) => 
-      ({type: 'SET_CARD_DATE', payload: date});
+// export const setCardDate = (date) => 
+//       ({type: 'SET_CARD_DATE', payload: date});
 
-export const setCardCVV = (cvv) => 
-      ({type: 'SET_CARD_CVV', payload: cvv});
+// export const setCardCVV = (cvv) => 
+//       ({type: 'SET_CARD_CVV', payload: cvv});
 
 // shoping result
 

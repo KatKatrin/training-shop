@@ -13,6 +13,10 @@ function Delivery ({totalPrise}) {
   
   const [countries, setCountriesState] = useState([]);
   const [stores, setStores] = useState([]);
+  console.log(countrieSS)
+  console.log(countries)
+
+  console.log(stores)
  
   const dispatch = useDispatch();
          
@@ -49,13 +53,11 @@ function Delivery ({totalPrise}) {
   }
 
   const onhandleChangeMethod = (e) => {
-    
-    if(e.target.value === 'store pickup'){
+    if(e.target.value === 'store pickup' && !countrieSS.length){
       request("https://training.cleverland.by/shop/countries")
         .then(data => setCountriesState(data))
         .catch((er) => (er));
     } 
-  
   }
 
 
@@ -67,7 +69,17 @@ function Delivery ({totalPrise}) {
     if(e.target.value.length === 6 && /^[0-9,+]+$/.test(e.target.value) ){
       e.target.value = e.target.value.substring(0,4) +"(" + e.target.value.substring(4,6) +")"
     }
-      
+
+  }
+
+  const customHandleBlur = (e, touched, values) => {
+    touched.storeAddress = true;
+    
+    if(stores.length){
+      if(!stores.some(item => item.city.toLowerCase() === e.target.value.toLowerCase())){
+        values.storeAddress = 'Store address not founded';
+      }
+    }
   }
 
   
@@ -131,10 +143,10 @@ function Delivery ({totalPrise}) {
       }
     
     onSubmit={values => {
-      
-      if(values.deliveryMethod === 'store pickup'){
+           
+      if(values.deliveryMethod === 'store pickup' && stores.length){
         if(!stores.some(item => item.city.toLowerCase() === values.storeAddress.toLowerCase())){ 
-          console.log(values)
+          
           values.storeAddress = 'Store address not founded'
            setAllValues(values)
         } else {
@@ -151,7 +163,7 @@ function Delivery ({totalPrise}) {
     validateOnMount={true}
     >
 
-    { ({errors, touched, values, validateOnMount, ...prop}) => (
+    { ({errors, touched, values, validateOnMount, handleBlur, ...prop}) => (
      
       <Form className="main-cart-form delivery" >
         
@@ -239,7 +251,8 @@ function Delivery ({totalPrise}) {
           <ErrorMessage className='error' name='country' component ='div'></ErrorMessage>
 
           <Field className={`field-input ${errors.storeAddress && touched.storeAddress && 'is-invalid'}`} id="storeAddress" 
-                  name="storeAddress" placeholder='Store address' list='cityListStore' disabled={Boolean(!values.country)}>        
+                  name="storeAddress" placeholder='Store address' list='cityListStore' disabled={Boolean(!values.country)}
+                  onBlur={(e) => {customHandleBlur(e, touched, values)}}>        
           </Field>
           <Field as='datalist' id='cityListStore'>
                 {stores.length ?
@@ -250,34 +263,32 @@ function Delivery ({totalPrise}) {
         </div>) :
         null 
       }
-
-      
+     
         <div className='checkbox-agree'>
           <Field className={`${errors.terms && touched.terms && 'is-invalid'}`} name="terms" type="checkbox" />
           <label className="checkbox">  I agree to the processing of my personal  information</label>
         </div>
         <ErrorMessage className='error' name='terms' component ='div'></ErrorMessage>
 
-
       </div>
 
       <TotalPrice totalPrice={totalPrise} />
         
-        <button type="submit" className='button-big cart-footer delivery'>FURTHER</button>
+      <button type="submit" className='button-big cart-footer delivery'>FURTHER</button>
+
+      <div className='cart-footer back-button inside'>
+            <button className='button-big view-card' onClick={()=> {dispatch(onOpenCartItem()); dispatch(setDeliveryData(values))}}>
+              VIEW CART
+            </button>
+      </div> 
+
     </Form>
     )
     }
 
     </Formik>
 
-    <div className='cart-footer back-button'>
-              <button className='button-big view-card' onClick={()=> dispatch(onOpenCartItem())}>
-                VIEW CART
-              </button>
-    </div> 
-
   </>
-)
-}
+)}
 
 export default Delivery;

@@ -12,7 +12,7 @@ const initialState = {
   unSuccessShopping:{result:false, errorMessage:''},
   
   countrieSS: [],
-  stores:[],
+  storeSS:[],
 
   deliveryData:{
     deliveryMethod:'pickup from post offices', 
@@ -88,8 +88,7 @@ const reducer = (state = initialState, action) => {
           reviewResult: action.payload
         }
       };
-  
-
+ 
     case 'GET_SUBSCRIBTION_DATA':
       return{
         ...state,
@@ -217,8 +216,7 @@ const reducer = (state = initialState, action) => {
               cartDeliverOpen: false, 
               cartPaymentOpen:false
             };
-          
-          
+     
     case 'CART_PAYMENT_OPEN':
       return {
         ...state,
@@ -230,13 +228,14 @@ const reducer = (state = initialState, action) => {
     case 'FETCHED_COUNTRYS':
       return {
         ...state,
-        countrieSS: action.payload
+        countrieSS: action.payload,
+        
       };
-    case 'FETCHED_STORES':
-        return {
-          ...state,
-          stores: action.payload 
-        };
+    // case 'FETCHED_STORES':
+    //     return {
+    //       ...state,
+    //       stores: action.payload 
+    //     };
     case 'SET_DELIVERY_DATA':
       return {
         ...state,
@@ -248,71 +247,13 @@ const reducer = (state = initialState, action) => {
           paymentData: action.payload,
           //cartPaymentOpen:false
         };
-    // case  'SET_DELIVERY_METHOD':
-    //   return {
-    //     ...state,
-    //     deliveryData: {...state.deliveryData, deliveryMethod: action.payload}
-    //   };
-    // case  'SET_PHONE_NUM':
-    //   return {
-    //     ...state,
-    //     deliveryData: {...state.deliveryData, phone: action.payload}
-    //   };
-    // case  'SET_MAIL':
-    //     return {
-    //       ...state,
-    //       deliveryData: {...state.deliveryData, email: action.payload}
-    //     };
-    // case  'SET_COUNTRY':
-    //       return {
-    //         ...state,
-    //         deliveryData: {...state.deliveryData, country: action.payload}
-    //       };
-    // case  'SET_CITY':
-    //         return {
-    //           ...state,
-    //           deliveryData: {...state.deliveryData, city: action.payload}
-    //         };
-    // case  'SET_STREET':
-    //       return {
-    //         ...state,
-    //         deliveryData: {...state.deliveryData, street: action.payload}
-    //       };  
-    // case  'SET_HOUSE':
-    //       return {
-    //         ...state,
-    //         deliveryData: {...state.deliveryData, house: action.payload}
-    //       };  
-    // case  'SET_APARTMENT':
-    //       return {
-    //         ...state,
-    //         deliveryData: {...state.deliveryData, apartment: action.payload}
-    //       };  
-    // case  'SET_POSTCODE':
-    //         return {
-    //           ...state,
-    //           deliveryData: {...state.deliveryData, postcode: action.payload}
-    //         };  
+
     case  'SET_STORE_ADDRESS':
       return {
         ...state,
         deliveryData: {...state.deliveryData, storeAddress: action.payload} 
       };  
-    // case  'SET_CARD_NUM':
-    //   return {
-    //     ...state,
-    //     paymentData: {...state.paymentData, card: action.payload} 
-    //   }; 
-    // case  'SET_CARD_DATE':
-    //     return {
-    //       ...state,
-    //       paymentData: {...state.paymentData, cardDate: action.payload}
-    //     }; 
-    // case  'SET_CARD_CVV':
-    //   return {
-    //     ...state,
-    //     paymentData: {...state.paymentData, cardCVV: action.payload} 
-    //   }; 
+
     case  'SET_SUCCES_SHOPING':
         return {
           ...state,
