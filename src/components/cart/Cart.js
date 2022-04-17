@@ -10,7 +10,7 @@ import Payment from './Payment';
 const Cart = () => {
     
    const {order, openCart, cartItemsOpen, cartDeliverOpen, cartPaymentOpen, successShopping, unSuccessShopping} = useSelector(state => state);
-       
+    
    const dispatch = useDispatch();
  
    function closeCart (e) {
@@ -48,19 +48,17 @@ const Cart = () => {
     if(!successShopping && (cartItemsOpen || cartDeliverOpen || cartPaymentOpen)){
         return (
          <>
-          <div className='cart-items-header'>
-            <div className={`items-header ${cartItemsOpen ? 'active': null }`}> Item in Cart</div>
-            <div className={`items-header ${cartDeliverOpen ? 'active': null }`}>
-              {`/ \u00A0 Delivery Info \u00A0 /`}
+            <div className='cart-items-header'>
+              <div className={`items-header ${cartItemsOpen ? 'active': null }`}> Item in Cart</div>
+              <div className={`items-header ${cartDeliverOpen ? 'active': null }`}>
+                {`/ \u00A0 Delivery Info \u00A0 /`}
+              </div>
+              <div className={`items-header ${cartPaymentOpen ? 'active': null }`}>Payment </div>
             </div>
-            <div className={`items-header ${cartPaymentOpen ? 'active': null }`}>Payment </div>
-          </div>
                       
             {cartItemsOpen ? <ItemsInCart arrItems={arrItems} totalPrise={totalPrise} closeCart={closeCart}/> : null} 
             {cartDeliverOpen ? <Delivery totalPrise={totalPrise}/> : null}
-          
             {cartPaymentOpen ? <Payment totalPrise={totalPrise}/> : null} 
-           
          </>
         )
      } else{
@@ -76,8 +74,7 @@ const Cart = () => {
           </> )
         } else
         if(unSuccessShopping.result){
-          
-          return( 
+           return( 
             <>
               <div className='absent-items'>Sorry, <br /> your payment <br />has not been processed. </div>
               <div className='cart-result_additional-info'>{unSuccessShopping.errorMessage}</div>
@@ -89,12 +86,10 @@ const Cart = () => {
                   VIEW CART
                 </button>
               </div> 
-            </> )
+            </>)
         } 
-    
-     }
+      }
    }
-
    
    function OpenCart () {
 

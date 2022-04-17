@@ -292,7 +292,7 @@
 
 .form-delivery, .form-payment{
   width: 360px;
-  max-width: 100%;
+  max-width: 96%;
   height: 70vh;
   
   display: flex;
@@ -303,9 +303,11 @@
 
   @media screen and (max-height:850px) {
     height: 55vh;
-    max-width: 90%;
   }
 
+  @media screen and (max-width:600px) {
+    max-width: 90%;
+  }
  
 }
 
@@ -339,7 +341,6 @@
 .error{
   color: red;
 }
-
 
 //payment
 
@@ -443,6 +444,10 @@
 
 .cart-footer.button-big.black.error{
   bottom: 200px;
+}
+
+.cart-footer.back-button.inside{
+  margin-left: 0%;
 }
 
 // custom radio

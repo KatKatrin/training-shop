@@ -178,7 +178,7 @@ const Payment = ({totalPrise}) => {
 
             <label className='payment-label-block label__method'>
               <Field type='radio' name="paymentMethod" value='cash'></Field>
-              <span> Cash</span>
+              <span>Cash</span>
             </label>
           </div>
 
@@ -225,17 +225,16 @@ const Payment = ({totalPrise}) => {
       <TotalPrice totalPrice={totalPrise}/>
         <button type="submit" className='button-big cart-footer delivery'>FURTHER</button>
 
-      </Form>
+      <div className='cart-footer back-button inside'>
+          <button className='button-big view-card' onClick={( )=> {dispatch(onOpenDelivery()); dispatch(setPaymentData(values))}}>
+            VIEW CART
+          </button>
+      </div> 
 
+      </Form>
     )}
 
    </Formik>
-
-   <div className='cart-footer back-button'>
-              <button className='button-big view-card' onClick={( )=> dispatch(onOpenDelivery())}>
-                VIEW CART
-              </button>
-    </div> 
    </>
   )
 }
