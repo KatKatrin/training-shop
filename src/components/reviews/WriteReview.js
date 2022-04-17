@@ -12,7 +12,7 @@ function WriteReview ({idProduct}){
   const [ratingNumber, setRatingNumber] = useState(1);
   
   const {reviewResult, isLoadingReview} = useSelector(state => state);
-  
+  console.log(reviewResult)
   const dispatch = useDispatch();
 
   const onChangeRating = (rating) => {
