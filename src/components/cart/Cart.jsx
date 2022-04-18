@@ -83,7 +83,7 @@ const Cart = () => {
                  BACK TO PAYMENT
                </div> 
               <div className='cart-footer back-button error'>
-                <button className='button-big view-card' onClick={()=> dispatch(onOpenCartItem())}>
+                <button className='button-big view-card' onClick={()=> {dispatch(onOpenCartItem()); dispatch(setPaymentData()); dispatch(setDeliveryData())}}>
                   VIEW CART
                 </button>
               </div> 

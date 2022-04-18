@@ -205,8 +205,8 @@ function Delivery ({totalPrise}) {
   
           
           <Field  className={`field-input ${errors.country && touched.country && 'is-invalid'}`} 
-                  id="country" name="country" as='select' placeholder='Country'>
-                    {/* <option value='' placeholder='Country'>Country</option>   */}
+                  id="country" name="country" as='select' >
+                    <option value='' >Country</option>  
                   { countries.length ? countries.map((item, i) => (<option key={i} value={item.name}>{item.name}</option>)) :
                     countrieSS.length ? countrieSS.map((item, i) => (<option key={i} value={item.name}>{item.name}</option>)) 
                     : null } 
@@ -228,8 +228,8 @@ function Delivery ({totalPrise}) {
       }
      
         <div className='checkbox-agree'>
-          <Field className={`${errors.terms && touched.terms && 'is-invalid'}`} name="terms" type="checkbox" />
-          <label className="checkbox">  I agree to the processing of my personal  information</label>
+          <Field className={`${errors.terms && touched.terms && 'is-invalid'}`} id='terms' name="terms" type="checkbox" />
+          <label htmlFor='terms' className="checkbox">  I agree to the processing of my personal  information</label>
         </div>
         <ErrorMessage className='error' name='terms' component ='div'></ErrorMessage>
 
