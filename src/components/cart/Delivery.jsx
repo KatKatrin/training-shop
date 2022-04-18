@@ -1,10 +1,12 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import * as Yup from 'yup';
-import { fetchedCountry, onOpenCartItem, onOpenPayment, setDeliveryData } from '../../actions';
-import { useHttp, useHttpPost } from '../../services/useHttp.hook';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+
 import TotalPrice from './TotalPrice';
+import { validationDelivery } from './validation';
+import { useHttp, useHttpPost } from '../../services/useHttp.hook';
+import { fetchedCountry, onOpenCartItem, onOpenPayment, setDeliveryData } from '../../actions';
+
 
 
 function Delivery ({totalPrise}) {
@@ -13,10 +15,7 @@ function Delivery ({totalPrise}) {
   
   const [countries, setCountriesState] = useState([]);
   const [stores, setStores] = useState([]);
-  console.log(countrieSS)
-  console.log(countries)
 
-  console.log(stores)
  
   const dispatch = useDispatch();
          
@@ -100,47 +99,7 @@ function Delivery ({totalPrise}) {
         terms:false
     }}
 
-    validationSchema = { 
-        Yup.object({
-          deliveryMethod: Yup.string(),
-          phone: Yup.string()
-                   .matches(/\d/gm, "Введите цифры")
-                   .matches(/^\+375\([25,29,33,44]/, 'Неверный код')
-                   .max(15, 'Максимум 9 символов для заполнения')
-                   .min(15, 'Минимум 9 символов для заполнения')
-                   .required('Обязательное поле!'),
-          email: Yup.string()
-                  .email('Неправильный email адрес')
-                  .matches(/\.[a-z, A-Z]{2,63}$/, 'Неверный домен')
-                  .required('Обязательное поле!'),
-          country: Yup.string()
-                  .matches(/\D/gm, "Неверные данные")
-                  .required('Обязательное поле!'),
-          city: Yup.string()
-                  .when('deliveryMethod', {
-                    is: (deliveryMethod) => (deliveryMethod === 'pickup from post offices' || deliveryMethod === 'express delivery'),
-                    then: Yup.string().matches(/\D/gm, "Неверные данные").required('Обязательное поле!') }),
-          street: Yup.string()
-                  .when('deliveryMethod', {
-                    is: (deliveryMethod) => (deliveryMethod === 'pickup from post offices' || deliveryMethod === 'express delivery'),
-                    then: Yup.string().matches(/\D/gm, "Неверные данные").required('Обязательное поле!') }),
-          house: Yup.string()
-                .when('deliveryMethod', {
-                  is: (deliveryMethod) => (deliveryMethod === 'pickup from post offices' || deliveryMethod === 'express delivery'),
-                  then: Yup.string().required('Обязательное поле!') }),
-          postcode: Yup.string()
-                      .when('deliveryMethod', {
-                      is: 'pickup from post offices',
-                      then: Yup.string().matches(/[0-1]/gm, "Неверные данные").required('Обязательное поле!') }),
-          storeAddress: Yup.string()
-                        .when('deliveryMethod', {
-                          is: 'store pickup',
-                          then: Yup.string().required('Обязательное поле!')
-                                            .max(24, 'Магазин не найден') }),
-          terms: Yup.boolean()
-                  .required('Необходимо согласие')
-                  .oneOf([true], "Необходимо согласие") })
-      }
+    validationSchema = { validationDelivery() }
     
     onSubmit={values => {
            
@@ -242,11 +201,15 @@ function Delivery ({totalPrise}) {
       {values.deliveryMethod === 'store pickup' ?
         (<div className='address-store' onInput={(e) => onHandleChangeStore(e, values)}>
           <div className='cart-input-name'> ADDRESS STORE</div>
-          <Field className={`field-input ${errors.country && touched.country && 'is-invalid'}`} id="country" name="country" as="select"  >
-                  <option value="">Country</option>
+         
+  
+          
+          <Field  className={`field-input ${errors.country && touched.country && 'is-invalid'}`} 
+                  id="country" name="country" as='select' placeholder='Country'>
+                    {/* <option value='' placeholder='Country'>Country</option>   */}
                   { countries.length ? countries.map((item, i) => (<option key={i} value={item.name}>{item.name}</option>)) :
                     countrieSS.length ? countrieSS.map((item, i) => (<option key={i} value={item.name}>{item.name}</option>)) 
-                    : null }
+                    : null } 
           </Field>
           <ErrorMessage className='error' name='country' component ='div'></ErrorMessage>
 

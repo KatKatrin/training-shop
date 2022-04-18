@@ -1,14 +1,18 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import  {useState}  from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+
+import Eye from './Eye';
+import TotalPrice from './TotalPrice';
+import { validationPayment } from './validation';
+import { useHttpPost } from '../../services/useHttp.hook';
 import { onOpenDelivery, setDeliveryData, setPaymentData, setSuccesShoping, setUnSuccesShoping } from '../../actions';
+
 import visa from './img/visa.png';
 import master from './img/mastercard.png';
 import paypal from './img/paypal.png';
-import Eye from './Eye';
-import TotalPrice from './TotalPrice';
-import { useHttpPost } from '../../services/useHttp.hook';
+
+
 
 
 const Payment = ({totalPrise}) => {
@@ -80,45 +84,7 @@ const Payment = ({totalPrise}) => {
       cashEmail:cashEmail,
     }}
 
-    validationSchema = { 
-      Yup.object({
-        
-        card: Yup.string()
-          .when('paymentMethod', {
-            is: paymentMethod => (paymentMethod === 'visa' || paymentMethod === 'master'),
-            then: Yup.string()
-                  .matches(/\d/gm, "Введите цифры")
-                  .length(16, 'Введите 16 символов')
-                  .required('Обязательное поле!'),
-            }),   
-
-        cardDate:Yup.string()
-          .when('paymentMethod', {
-              is: paymentMethod => (paymentMethod === 'visa' || paymentMethod === 'master'),
-              then: Yup.string()
-                .matches(/(([0]{1}[1-9]{1}|[1]{1}[1-2]{1}).[2-4]{1}[3-9]{1})|(([0]{1}[4-9]{1}|[1]{1}[1-2]{1}).[2]{1}[2]{1})/, "Неверная дата")
-                .required('Обязательное поле!'),
-            }),
-          
-
-        cardCVV:Yup.string()
-          .when('paymentMethod', {
-              is: paymentMethod => (paymentMethod === 'visa' || paymentMethod === 'master'),
-              then: Yup.string()
-                    .matches(/^[0-9,*]+$/, 'Введите цифры')
-                    .required('Обязательное поле!'),
-            }),   
-                
-        cashEmail:Yup.string()
-            .when('paymentMethod', {
-              is: 'PayPall',
-              then: Yup.string()
-                        .email('Неправильный email адрес')
-                        .matches(/\.[a-z, A-Z]{2,63}$/, 'Неверный домен')
-                        .required('Обязательное поле!'),
-            }),
-        })
-    }
+    validationSchema = { validationPayment()}
 
       onSubmit={values => {
 
