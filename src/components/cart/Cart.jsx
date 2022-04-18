@@ -1,10 +1,11 @@
-import './cart.scss';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { onOpenCartItem, toggleCart, onOpenPayment, deleteAllOrder, setDeliveryData, setPaymentData} from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+
 import ItemsInCart from './ItemsInCart';
 import Delivery from './Delivery';
 import Payment from './Payment';
+import { onOpenCartItem, toggleCart, onOpenPayment, deleteAllOrder, setDeliveryData, setPaymentData} from '../../actions';
+
+import './cart.scss';
 
 
 const Cart = () => {
