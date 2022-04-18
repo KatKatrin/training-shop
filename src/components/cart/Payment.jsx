@@ -89,22 +89,20 @@ const Payment = ({totalPrise}) => {
       onSubmit={values => {
 
         if(values.paymentMethod === 'visa' || values.paymentMethod === 'master' ){
-          const resPayment = {...values, paymentMethod:'card', cardCVV:cvv, }
+          const resPayment = {...values, paymentMethod:'card', cardCVV:cvv, cashEmail:''}
          
           
           const finalObj = {products: order, totalPrice: totalPrise, ...resPayment, ...deliveryData};
 
-          console.log(finalObj)
-
+          
            requestPost("https://training.cleverland.by/shop/cart", finalObj)
               .then(() => {dispatch(setSuccesShoping()); dispatch(setDeliveryData()); dispatch(setPaymentData()) })
               .catch((err) => {dispatch(setUnSuccesShoping(err.toString())); dispatch(setPaymentData(resPayment));})
 
         } else {
-          const finalObj = {products: order, totalPrice: totalPrise, ...values, ...deliveryData};
+          const finalObj = {products: order, totalPrice: totalPrise, ...values, ...deliveryData, 
+                            card:'', cardCVV:'', cardDate:''};
           
-          console.log(finalObj)
-
            requestPost("https://training.cleverland.by/shop/cart", finalObj)
               .then(() => {dispatch(setSuccesShoping()); dispatch(setDeliveryData()); dispatch(setPaymentData()) })
               .catch((err) => {dispatch(setUnSuccesShoping(err.toString())); dispatch(setPaymentData(values));})
