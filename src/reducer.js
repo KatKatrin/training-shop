@@ -231,11 +231,7 @@ const reducer = (state = initialState, action) => {
         countrieSS: action.payload,
         
       };
-    // case 'FETCHED_STORES':
-    //     return {
-    //       ...state,
-    //       stores: action.payload 
-    //     };
+  
     case 'SET_DELIVERY_DATA':
       return {
         ...state,
