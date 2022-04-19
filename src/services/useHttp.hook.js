@@ -8,6 +8,7 @@ export const useHttp = () => {
        
         try {
             const response = await fetch(url, {method, body, headers});
+            //console.log(response)
 
             if (!response.ok) {
                 throw new Error(`Could not fetch ${url}, status: ${response.status}`);
@@ -29,18 +30,23 @@ export const useHttp = () => {
 
 export const useHttpPost = () => {
    
-    const request = useCallback(async (url, body, method = 'POST',  headers = {'Content-Type': 'application/json;charset=utf-8'}) => {
+    const requestPost = useCallback(async (url, body, method = 'POST',  headers = {'Content-Type': 'application/json;charset=utf-8'}) => {
 
         const bodyJSON = JSON.stringify(body)
+        console.log(bodyJSON)
         
         try {
             const response = await fetch(url, {method, body: bodyJSON, headers});
+            console.log(response)
                         
             if (!response.ok) {
                 throw new Error(`Could not fetch ${url}, status: ${response.status}`);
             }
 
-            return response;
+            const data = await response.json();
+            console.log(data)
+
+            return data;
         } catch(e) {
             
             throw e;
@@ -49,5 +55,5 @@ export const useHttpPost = () => {
 
     
 
-    return {request}
+    return {requestPost}
 }

@@ -3,6 +3,32 @@ const initialState = {
   order:[],
   openCart:false,
   openFormReview: false,
+ 
+  cartItemsOpen: false,
+  cartDeliverOpen: false,
+  cartPaymentOpen: false,
+
+  successShopping:false,
+  unSuccessShopping:{result:false, errorMessage:''},
+  
+  countrieSS: [],
+  storeSS:[],
+
+  deliveryData:{
+    deliveryMethod:'pickup from post offices', 
+    phone:'',  email:'', country:'', city:'', street:'', house:'', apartment:'', postcode:'',
+    storeAddress:''
+  },
+  // deliveryData:{
+  //   deliveryMethod:'pickup from post offices', 
+  //   phone:'',  email:'kat12@gmail.com', country:'Беларусь', city:'барань', street:'ааааа', house:'32ф', apartment:'', postcode:'12',
+  //   storeAddress:''
+  // },
+
+  paymentData:{
+    paymentMethod:'visa', card:'', cardDate:'', cardCVV:'', cashEmail:''
+  },
+    
   
   products: {
     men: [],
@@ -33,7 +59,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         reviewResult: false,
         openFormReview: !state.openFormReview,
-       
       };
       case 'GET_REVIEW_DATA':
         return{
@@ -63,8 +88,7 @@ const reducer = (state = initialState, action) => {
           reviewResult: action.payload
         }
       };
-  
-
+ 
     case 'GET_SUBSCRIBTION_DATA':
       return{
         ...state,
@@ -95,7 +119,6 @@ const reducer = (state = initialState, action) => {
         isLoading: false,
         isError: false,
         isLoaded: true,
-        
       };
       case 'LOADING_PRODUCTS':
       return{
@@ -109,11 +132,23 @@ const reducer = (state = initialState, action) => {
         isLoading: false,
       };
     case 'TOGGLE_CART':
-      return {
-        ...state,
-       openCart: action.payload,
-       
-      };
+      if(action.payload){
+        return {
+          ...state,
+        openCart: action.payload,
+        cartItemsOpen: true,
+        cartDeliverOpen: false,
+        cartpayment: false,
+        };
+      } else {
+        return {
+          ...state,
+        openCart: action.payload,
+        cartItemsOpen: false,
+        cartDeliverOpen: false,
+        cartpayment: false,
+        };
+      }
     case 'INC_ORDER':
       const newStateQuantity =  state.order.map((item, i) => {
         if(item.id === action.payload.id && item.size === action.payload.size && item.color === action.payload.color){
@@ -146,7 +181,8 @@ const reducer = (state = initialState, action) => {
     case 'ADD_ORDER':
       return {
         ...state,
-       order: [...state.order, {...action.payload, quantity:1 }]
+       order: [...state.order, {...action.payload, quantity:1 }],
+       successShopping: false
       };
     case 'DELETE_ORDER':
       const newStateOrder = state.order.filter((item, i) => (
@@ -156,11 +192,88 @@ const reducer = (state = initialState, action) => {
 
       return {
         ...state,
-       order: [...newStateOrder]
+       order: [...newStateOrder] 
       };
+
+    case 'DELETE_ALL_ORDER':
+      return {
+        ...state,
+       order: [] 
+      };
+
+    case 'CART_DELIVERY_OPEN':
+        return {
+          ...state,
+          cartItemsOpen: false,
+          cartDeliverOpen: true,
+          cartPaymentOpen: false,
+        };
+    case 'CART_ITEMS_OPEN':
+         
+            return {
+              ...state,
+              cartItemsOpen: true,
+              cartDeliverOpen: false, 
+              cartPaymentOpen:false
+            };
+     
+    case 'CART_PAYMENT_OPEN':
+      return {
+        ...state,
+        cartItemsOpen: false,
+        cartDeliverOpen: false,
+        cartPaymentOpen: true,
+      };
+  
+    case 'FETCHED_COUNTRYS':
+      return {
+        ...state,
+        countrieSS: action.payload,
+        
+      };
+  
+    case 'SET_DELIVERY_DATA':
+      return {
+        ...state,
+        deliveryData: action.payload 
+      };
+    case 'SET_PAYMENT_DATA':
+        return {
+          ...state,
+          paymentData: action.payload,
+          //cartPaymentOpen:false
+        };
+
+    case  'SET_STORE_ADDRESS':
+      return {
+        ...state,
+        deliveryData: {...state.deliveryData, storeAddress: action.payload} 
+      };  
+
+    case  'SET_SUCCES_SHOPING':
+        return {
+          ...state,
+          successShopping: true,
+          unSuccessShopping: false,
+
+          cartItemsOpen: false,
+          cartDeliverOpen: false,
+          cartPaymentOpen: false,
+        }; 
+    case  'SET_UNSUCCES_SHOPING':
+          return {
+            ...state,
+            successShopping: false,
+            unSuccessShopping: {result:true, errorMessage:action.payload},
+
+            cartItemsOpen: false,
+            cartDeliverOpen: false,
+            cartPaymentOpen: false,
+          }; 
     default:
       return state
   }
 }
 
-export default reducer;
+export default reducer; 
+
