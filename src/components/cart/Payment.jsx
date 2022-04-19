@@ -100,12 +100,19 @@ const Payment = ({totalPrise}) => {
               .catch((err) => {dispatch(setUnSuccesShoping(err.toString())); dispatch(setPaymentData(resPayment));})
 
         } else {
-          const finalObj = {products: order, totalPrice: totalPrise, ...values, ...deliveryData, 
-                            card:'', cardCVV:'', cardDate:''};
+          let finalObj = {};
+          let resPaym = {};
+          if(values.paymentMethod === 'PayPall'){
+              resPaym = {...values, card:'', cardCVV:'', cardDate:''}
+             finalObj = {products: order, totalPrice: totalPrise, ...values, ...deliveryData, ...resPaym};
+          } else{
+            resPaym = {...values, card:'', cardCVV:'', cardDate:'', cashEmail:''}
+            finalObj = {products: order, totalPrice: totalPrise, ...values, ...deliveryData, ...resPaym};
+          }
           
            requestPost("https://training.cleverland.by/shop/cart", finalObj)
               .then(() => {dispatch(setSuccesShoping()); dispatch(setDeliveryData()); dispatch(setPaymentData()) })
-              .catch((err) => {dispatch(setUnSuccesShoping(err.toString())); dispatch(setPaymentData(values));})
+              .catch((err) => {dispatch(setUnSuccesShoping(err.toString())); dispatch(setPaymentData(resPaym));})
         }
         
 

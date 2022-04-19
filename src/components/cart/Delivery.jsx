@@ -107,14 +107,17 @@ function Delivery ({totalPrise}) {
         if(!stores.some(item => item.city.toLowerCase() === values.storeAddress.toLowerCase())){ 
           
           values.storeAddress = 'Store address not founded'
-           setAllValues(values)
+          const finObj = {...values, city:'', street:'', house:'', apartment:'', postcode:''}
+           setAllValues(finObj)
         } else {
+          const finObj = {...values, city:'', street:'', house:'', apartment:'', postcode:''}
           dispatch(onOpenPayment());
-          setAllValues(values)
+          setAllValues(finObj)
         }
       } else {
+        const finObj = {...values, storeAddress:''}
         dispatch(onOpenPayment());
-        setAllValues(values)
+        setAllValues(finObj)
       }
      
     }}
