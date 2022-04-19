@@ -67,14 +67,8 @@ function ItemsInCart ({arrItems, totalPrise, closeCart}) {
 
       <TotalPrice totalPrice={totalPrise}/>
       
-      <button className='cart-footer button-big black further' onClick={onOpenDeliveryForm}>FURTHER</button>
-
-      <div className='cart-footer back-button'>
-              <button className='button-big view-card close-cart-button' onClick={(e)=> closeCart(e)}>
-                VIEW CART
-              </button>
-      </div> 
-    
+      <button className='cart-footer button-big items black further' onClick={onOpenDeliveryForm}>FURTHER</button>
+ 
     </>
   )
 };

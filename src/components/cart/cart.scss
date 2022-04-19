@@ -28,7 +28,7 @@
 .products-cart{
   width: 388px;
   max-width: 65%;
-  height: 98vh;
+  height: 100vh;
   position: absolute;
   right: 2px;
   background-color: white;
@@ -486,7 +486,17 @@ input[type='radio']:checked::after {
   top: 26px;
 }
 
+.clarify-text{
+  color:#9C9C9C;
+}
 
+.cart-footer.button-big.items{
+  bottom: 80px;
+}
+
+.render-items ~.total-price{
+  bottom: 130px;
+}
 
 
 
