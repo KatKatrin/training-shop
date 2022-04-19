@@ -37,7 +37,7 @@ export const validationDelivery = () => {
       storeAddress: Yup.string()
                     .when('deliveryMethod', {
                       is: 'store pickup',
-                      then: Yup.string().required('Обязательное поле!')
+                      then: Yup.string().required('Поле должно быть заполнено!')
                                         .max(24, 'Магазин не найден') }),
       terms: Yup.boolean()
               .required('Необходимо согласие')

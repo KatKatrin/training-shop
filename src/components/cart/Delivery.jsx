@@ -201,9 +201,7 @@ function Delivery ({totalPrise}) {
       {values.deliveryMethod === 'store pickup' ?
         (<div className='address-store' onInput={(e) => onHandleChangeStore(e, values)}>
           <div className='cart-input-name'> ADDRESS STORE</div>
-         
-  
-          
+      
           <Field  className={`field-input ${errors.country && touched.country && 'is-invalid'}`} 
                   id="country" name="country" as='select' >
                     <option value='' >Country</option>  
@@ -211,8 +209,8 @@ function Delivery ({totalPrise}) {
                     countrieSS.length ? countrieSS.map((item, i) => (<option key={i} value={item.name}>{item.name}</option>)) 
                     : null } 
           </Field>
-          <ErrorMessage className='error' name='country' component ='div'></ErrorMessage>
-
+           <ErrorMessage className='error' name='country' component ='div'></ErrorMessage> 
+        
           <Field className={`field-input ${errors.storeAddress && touched.storeAddress && 'is-invalid'}`} id="storeAddress" 
                   name="storeAddress" placeholder='Store address' list='cityListStore' disabled={Boolean(!values.country)}
                   onBlur={(e) => {customHandleBlur(e, touched, values)}}>        
@@ -222,7 +220,8 @@ function Delivery ({totalPrise}) {
                   stores.map((item,i) => (<option key={i} value={item.city}/>)) : null
                 }
           </Field>
-          <ErrorMessage className='error' name='storeAddress' component ='div'></ErrorMessage>
+          {(errors.storeAddress && touched.storeAddress) ? <ErrorMessage className='error' name='storeAddress' component ='div'/> :
+          <div className='clarify-text'>Введите город и выберите магазин из списка</div>}
         </div>) :
         null 
       }

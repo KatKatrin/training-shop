@@ -187,7 +187,9 @@ const Payment = ({totalPrise}) => {
       </div>
       
       <TotalPrice totalPrice={totalPrise}/>
-        <button type="submit" className='button-big cart-footer delivery'>FURTHER</button>
+        <button type="submit" className='button-big cart-footer delivery'>
+          {values.paymentMethod === 'cash' ? 'READY' : 'CHECK OUT'}
+      </button>
 
       <div className='cart-footer back-button inside'>
           <button className='button-big view-card' onClick={( )=> {dispatch(onOpenDelivery()); dispatch(setPaymentData(values))}}>
